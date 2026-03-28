@@ -5,7 +5,7 @@
   - [1.1 Exception Prioritization](#11-exception-prioritization)
   - [1.2 The Primary Exception](#12-the-primary-exception)
   - [1.3 Suppressed Exceptions](#13-suppressed-exceptions)
-  - [1.4 Protection Against Exception Masking](#14-protection-against-exception-masking)
+  - [1.4 Reasoning of Suppressed Exceptions](#14-reasoning-of-suppressed-exceptions)
 - [2. Handling and Retrieval](#2-handling-and-retrieval)
   - [2.1 Catch Block Mechanics](#21-catch-block-mechanics)
   - [2.2 Retrieving Suppressed Exceptions](#22-retrieving-suppressed-exceptions)
@@ -37,7 +37,7 @@
 #### Everyday Analogy
 - Imagine you are carrying a stack of boxes (the `try` block) and trip, dropping the main box (the Primary Exception). As you scramble to pick it up, you accidentally knock over two more boxes (the Suppressed Exceptions). When you report the incident to your boss, you say "I tripped, and by the way, here is a list of other things I consequently knocked over." The trip is the primary issue, the others are suppressed details attached to the main report.
 
-### 1.4 Protection Against Exception Masking
+### 1.4 Reasoning of Suppressed Exceptions
 
 #### Concept Definition
 - In a traditional `try-catch-finally` block, if a `finally` block throws an exception during resource cleanup, it completely wipes out (masks) any unhandled exception that previously occurred in the `try` block. It also bypasses the `catch` blocks of that same `try` statement, because the `finally` block executes *after* the `catch` blocks.
