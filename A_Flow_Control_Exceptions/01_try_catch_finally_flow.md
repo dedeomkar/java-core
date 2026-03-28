@@ -72,6 +72,11 @@ try {
 - The `finally` block still runs completely.
 - The exception remains "active" and is re-thrown to the caller methods.
 
+#### Scenario 4: Exception Arises in the Finally Block
+- If an exception occurs during the execution of a `finally` block, the `finally` block completes abruptly.
+- This new exception is propagated outwards, and any previously unhandled exception from the `try` or `catch` block is entirely **lost** and suppressed.
+- This is known as **Exception Masking**, where an error during cleanup hides the original cause of the failure.
+
 ---
 [Back to Top](#table-of-contents) | [Back to Master TOC](./TOC.md)
 
