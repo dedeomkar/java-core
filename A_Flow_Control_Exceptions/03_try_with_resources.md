@@ -62,7 +62,7 @@ public void copyFile() throws IOException {
 ```
 
 ---
-[Back to Top](#table-of-contents) | [Back to Master TOC](./TOC.md)
+[Back to Top](#table-of-contents)
 
 ## 2. Resource Requirements and Scope
 
@@ -119,4 +119,4 @@ public void handleExternalResource() {
 ```
 
 ---
-[Back to Top](#table-of-contents) | [Back to Master TOC](./TOC.md)
+[Back to Top](#table-of-contents)

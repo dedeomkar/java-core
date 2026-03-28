@@ -104,4 +104,4 @@ try (MyResource r1 = new MyResource(1);
 > **Important Consideration**: Always use `try-with-resources` when dealing with multiple resources that might throw exceptions on close. Before Java 7, manually writing nested `try-finally` blocks to close multiple resources without losing the original exception (exception masking) was notoriously complex and error-prone. This structure solves that elegantly by guaranteeing closure attempts and preserving all thrown exceptions via suppression.
 
 ---
-[Back to Top](#table-of-contents) | [Back to Master TOC](./TOC.md)
+[Back to Top](#table-of-contents)

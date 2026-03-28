@@ -84,4 +84,4 @@ public void demonstrateClosureOrder() throws Exception {
 > **Important Consideration**: While you *can* decouple creation order and listing order, it is usually best to keep them synchronized (create and list in the same order) so that nested dependencies close naturally, avoiding confusing logic.
 
 ---
-[Back to Top](#table-of-contents) | [Back to Master TOC](./TOC.md)
+[Back to Top](#table-of-contents)
