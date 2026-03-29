@@ -155,6 +155,46 @@ public class BuildMe {
     }
 }
 ```
+### Usage example :
+
+```java
+public class BuilderPatternUsageSample {
+    public static void main(String[] args) {
+        // Example 1: Build with all properties
+        BuildMe obj1 = BuildMe.builder()
+                .name("John Doe")
+                .date("2026-03-29")
+                .build();
+        
+        System.out.println("Object 1 created with name and date");
+        
+        // Example 2: Build with only name
+        BuildMe obj2 = BuildMe.builder()
+                .name("Jane Smith")
+                .build();
+        
+        System.out.println("Object 2 created with only name");
+        
+        // Example 3: Build with only date
+        BuildMe obj3 = BuildMe.builder()
+                .date("2025-12-25")
+                .build();
+        
+        System.out.println("Object 3 created with only date");
+        
+        // Example 4: Build with no properties (empty)
+        BuildMe obj4 = BuildMe.builder()
+                .build();
+        
+        System.out.println("Object 4 created empty");
+    }
+}
+```
+The usage sample demonstrates:
+
+- Fluent API chaining
+- Flexibility in setting properties
+- Multiple scenarios (all properties, partial, and empty builds)
 
 ### Best Practice/Consideration
 In this builder layout:
