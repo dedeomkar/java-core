@@ -142,7 +142,7 @@ While modern Java heavily relies on Lambda expressions for concise logic, there 
    - Inside an anonymous class, the `this` keyword refers to the instance of the anonymous class itself.
    - Inside a Lambda expression, there is no distinct `this`! Using the word `this` inside a lambda refers transparently to the enclosing outer object.
 
-## 5. FYI : Subclassing vs Implementing 
+## 5. FYI Subclassing vs Implementing 
 
 ### Subclassing (Extending)
 - **Definition**: Inheriting from a concrete class or abstract class
