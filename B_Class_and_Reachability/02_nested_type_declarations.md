@@ -195,6 +195,7 @@ The usage sample demonstrates:
 - Fluent API chaining
 - Flexibility in setting properties
 - Multiple scenarios (all properties, partial, and empty builds)
+- Immutability of BuildMe class, which also enables thread-safety
 
 ### Best Practice/Consideration
 In this builder layout:
