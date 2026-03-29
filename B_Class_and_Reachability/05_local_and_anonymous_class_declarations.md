@@ -5,6 +5,7 @@
 - [2. Closures and Effectively Final Variables](#2-closures-and-effectively-final-variables)
 - [3. Anonymous Classes](#3-anonymous-classes)
 - [4. Anonymous Classes vs. Lambda Expressions](#4-anonymous-classes-vs-lambda-expressions)
+- [5. FYI : Subclassing vs Implementing](#5-fyi-:-subclassing-vs-implementing)
 
 ---
 
@@ -140,5 +141,20 @@ While modern Java heavily relies on Lambda expressions for concise logic, there 
 5. **The "this" Pointer**: 
    - Inside an anonymous class, the `this` keyword refers to the instance of the anonymous class itself.
    - Inside a Lambda expression, there is no distinct `this`! Using the word `this` inside a lambda refers transparently to the enclosing outer object.
+
+## 5. FYI : Subclassing vs Implementing 
+
+### Subclassing (Extending)
+- **Definition**: Inheriting from a concrete class or abstract class
+- **Syntax**: extends ClassName
+- **What you get**: Access to the parent class's methods and fields; you can override existing methods
+- **Constructor support**: You can pass arguments to the parent class constructor
+
+### Implementing (Interfaces)
+- **Definition**: Creating a concrete implementation of an interface contract
+- **Syntax**: implements InterfaceName
+- **What you get**: You must implement all abstract methods defined by the interface
+- **Constructor support**: You cannot pass arguments to an interface constructor (interfaces have no constructors)
+
 
 [Back to Top](#table-of-contents)
