@@ -5,7 +5,7 @@
 - [2. Closures and Effectively Final Variables](#2-closures-and-effectively-final-variables)
 - [3. Anonymous Classes](#3-anonymous-classes)
 - [4. Anonymous Classes vs. Lambda Expressions](#4-anonymous-classes-vs-lambda-expressions)
-- [5. FYI : Subclassing vs Implementing](#5-fyi-:-subclassing-vs-implementing)
+- [5. FYI : Subclassing vs Implementing](#5-fyi-subclassing-vs-implementing)
 
 ---
 
