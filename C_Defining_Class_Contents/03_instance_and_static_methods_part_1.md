@@ -117,13 +117,39 @@ public class ReturnExample {
 - **No `this` Reference**: You cannot use `this.field` inside a static method.
 - **Static Access to Instances**: A static method *can* access instance fields, but only if you provide an explicit object reference (e.g., `myObject.field`).
 
-```java
-public class StaticMethodTest {
-    int instanceValue = 10;
+### Invocation Methods
+A static method (like `doStuff()`) can be invoked in four distinct ways:
 
-    public static void checkValue(StaticMethodTest obj) {
-        // System.out.println(instanceValue); // INVALID: No 'this' access
-        System.out.println(obj.instanceValue); // VALID: Accessing via explicit reference
+1. **Unqualified**: Directly as `doStuff()` (legal only within the same class or when statically imported).
+2. **Class-Qualified**: Using the class name: `MyClass.doStuff()` (The recommended approach).
+3. **Instance-Reference**: Using an object: `obj.doStuff()` (Legal but considered terrible style; most IDEs will warn).
+4. **`this`-Qualified**: Using `this.doStuff()` (Only valid if called from an instance method within the same class).
+
+```java
+public class InvocationDemo {
+    public static void staticMethod() {
+        System.out.println("Static invoked");
+    }
+
+    public void instanceMethod() {
+        // Way 1
+        staticMethod();
+
+        // Way 2 (Using this) 
+        // if instanceMethod() was static then this.staticMethod() would not be allowed
+        this.staticMethod(); 
+    }
+
+    public static void main(String[] args) {
+        // Way 3 (Using class name)
+        InvocationDemo.staticMethod();
+
+        // Way 4 (Using instance)
+        InvocationDemo obj = new InvocationDemo();
+        obj.staticMethod(); 
+
+        // Way 5 (Same as 4 but inline)
+        new InvocationDemo().staticMethod();
     }
 }
 ```
