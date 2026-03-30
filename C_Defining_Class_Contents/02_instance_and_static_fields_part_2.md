@@ -78,11 +78,16 @@ public class StatTest {
 
 ---
 
-## 4. Early vs. Late Binding (Shadowing vs. Overriding)
+## 4. Field Shadowing (No Polymorphism for Fields)
 
-### Field Binding is Static (Compile-Time)
-- **No Virtual Binding**: Fields, including instance fields, explicitly lack any form of dynamic method invocation (late binding). 
-- **Reference Over Object**: The compiler strictly uses the *compile-time type of the reference pointer*, not the runtime type of the newly instantiated object, to decide which hierarchy field is accessed when field shadowing occurs.
+### Concept Definition
+- **No Overriding for Fields**: Unlike methods, fields do not support "polymorphism" or "overriding". If a child class declares a field with the exact same name as a parent class field, it simply *hides* or *shadows* the parent's field rather than replacing it.
+
+### Everyday Analogy
+- **The Two ID Cards**: Imagine a person who works for two companies. When you ask to see their ID, the address you read depends entirely on *which ID card* (the reference type) they hand you, even though it's the exact same person standing in front of you (the actual object in memory).
+
+### Java-Specific Implementation
+- **Compile-Time Decision**: Java decides which field to access entirely at **compile-time**. It looks *strictly* at the variable's declared type (the reference), completely ignoring the actual object type created in memory.
 
 ```java
 class Parent {
@@ -90,16 +95,20 @@ class Parent {
 }
 
 class Child extends Parent {
-    int x = 200;
+    int x = 200; // This 'shadows', but does not 'override', Parent's x
 }
 
 public class FieldBindingDemo {
     public static void main(String[] args) {
-        // Reference is 'Parent', Actual object is 'Child'
+        // We create a Child object, but hold it in a Parent reference variable
         Parent p = new Child();
         
-        // Outputs '100' -> determined entirely by pointer 'p' type!
-        System.out.println(p.x);
+        // At compile-time, Java sees 'p' is declared as type 'Parent'.
+        // So it uses Parent's 'x' (100), ignoring that it's actually a 'Child' object!
+        System.out.println(p.x); // Output: 100
+        
+        // If we cast the reference to Child, it uses Child's 'x'
+        System.out.println(((Child) p).x); // Output: 200
     }
 }
 ```
