@@ -133,9 +133,7 @@ class MyNumber implements Comparable<MyNumber> {
 // }
 ```
 
-> [!WARNING]
-> **Performance & Safety**: 
-> 1. **Casting Overhead**: Bridge methods involve an implicit type cast (`(MyNumber) o`). While minimal, in high-frequency low-latency loops, these tiny cycles add up.
-> 2. **`ClassCastException`**: If you use a raw reference (e.g., `Comparable c = new MyNumber()`) and pass the wrong object type to `c.compareTo(unexpectedObj)`, the bridge method will throw a `ClassCastException` at runtime because the internal cast fails.
+> **Important Consideration**:
+> In low-latency performance tuning, be aware of bridge methods. Because they involve a **type cast from Object**, they can cause a tiny performance overhead and, more importantly, could lead to `ClassCastException` if types are misused at runtime.
 
 [Back to Top](#table-of-contents)
