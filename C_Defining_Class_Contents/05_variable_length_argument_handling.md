@@ -90,12 +90,14 @@ public class MutationDemo {
     }
 
     public static void main(String[] args) {
+        /* RISKY CALL: Passing an existing array */
         String[] myTeam = {"Alice", "Bob", "Charlie"};
-        
-        // Passing the REAL array, not individual items!
         setFirstToJames(myTeam); 
+        System.out.println(myTeam[1]); // Outputs: James (Array was MUTATED)
         
-        System.out.println(myTeam[1]); // Outputs: James (The original array was MUTATED!)
+        /* SAFE CALL: Passing individual items */
+        // JVM creates a NEW hidden array to wrap these 
+        setFirstToJames("Alice", "Bob", "Charlie"); 
     }
 }
 ```
