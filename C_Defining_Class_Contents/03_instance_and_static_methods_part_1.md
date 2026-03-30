@@ -5,7 +5,7 @@
 - [2. Formal Parameters and Argument Passing](#2-formal-parameters-and-argument-passing)
 - [3. Checked Exceptions and the `throws` Clause](#3-checked-exceptions-and-the-throws-clause)
 - [4. Return Types and Compatibility](#4-return-types-and-compatibility)
-- [5. Static Methods and Jargon Demystified](#5-static-methods-and-jargon-demystified)
+- [5. Static Methods](#5-static-methods)
 
 ---
 
@@ -108,13 +108,10 @@ public class ReturnExample {
 
 ---
 
-## 5. Static Methods and Jargon Demystified
+## 5. Static Methods
 
 ### Concept Definition
 - **Static Methods**: These are methods that belong to the class template itself, not to any individual object. Because they aren't "inside" an object, they have no `this` reference.
-
-### Everyday Analogy
-- **The Factory Manual**: A static method is like a "Construction Manual" for a car. It describes how all cars should be built, but the manual itself isn't a car, doesn't have a steering wheel (`this`), and can't drive.
 
 ### Java-Specific Implementation
 - **No `this` Reference**: You cannot use `this.field` inside a static method.
