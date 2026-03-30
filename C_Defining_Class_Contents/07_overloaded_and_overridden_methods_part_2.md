@@ -28,13 +28,18 @@ class Parent {
     
     // Static method (Hidable)
     public static void show() { System.out.println("Static Parent"); }
+
+    // Overloading not Overriding !
+    public void greet(String message) { System.out.println("Hello " + message); }
 }
 
 class Child extends Parent {
     @Override
     public void greet() { System.out.println("Hello from Child"); }
 
+    // @Override // COMPILATION ERROR: Static methods cannot be overridden, only hidden
     public static void show() { System.out.println("Static Child"); }
+
 }
 
 public class OverrideHideDemo {
@@ -46,9 +51,20 @@ public class OverrideHideDemo {
         
         // STATIC BINDING (Reference type wins - method was hidden, not overridden)
         p.show();  // Outputs: Static Parent
+
+        // HOW TO PRINT "Static Child"?
+        Child.show();         // Way 1: Use the class name (RECOMMENDED)
+        ((Child) p).show();   // Way 2: Cast the reference to the child type
+
+        // Method Overloading NOT Overriding
+        p.greet("Dan"); 
     }
 }
 ```
+
+> [!CAUTION]
+> **Reference Visibility vs Object Implementation**
+> Remember: The **Reference Type** acts as a filter. It determines which method names and parameter signatures the compiler is allowed to "see." If a method (or an overload) only exists in the subclass, you **must cast** the reference to that subclass type before you can invoke it.
 
 [Back to Top](#table-of-contents)
 
@@ -86,17 +102,11 @@ class StringProducer extends Producer {
 ### Concept Definition
 - **Dynamic Binding**: At runtime, Java decides which method to run based on the **actual object type**, not the reference variable's type.
 
-### Everyday Analogy
-- **The Actor and the Script**:
-  - The **Reference Variable** is like the **Script** (e.g., "The Hero"). It defines *what* actions are available (e.g., `fight()`, `speak()`).
-  - The **Actual Object** is the **Actor** playing the role (e.g., Christian Bale or Robert Pattinson). 
-  - When the script says `fight()`, the *way* the fight looks depends on which actor is actually on stage (Dynamic Binding). 
-  - **HOWEVER**, if the script also mentions the hero's **Height** (a Field), you just read the number on the paper, regardless of the actor's real height (Static Binding).
-
 ### Java-Specific Implementation
 - This polymorphism only applies to instance methods. Fields and static methods use the reference type (Static Binding).
 
 ```java
+// [ already seen in previous chapters ]
 Sound s = new Music();
 s.play(); // Runs Music's play() -> Dynamic Binding (The Actor)
 System.out.println(s.volume); // Reads Sound's volume field -> Static Binding (The Script)
