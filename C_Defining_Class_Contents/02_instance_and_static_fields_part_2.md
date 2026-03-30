@@ -126,9 +126,16 @@ public class FieldBindingDemo {
 - **No `super` Binding**: While interfaces behave similarly to abstract classes conceptually, `super` cannot be used to invoke or capture fields of implemented interfaces; it solely works for class ancestry.
 
 ```java
-public interface ConstantContainer {
-    // implicitly public static final
-    String NAME = "System Name";
+interface ParentInterface {
+    int X = 100;
+}
+
+class Child implements ParentInterface {
+    public void printX() {
+        // System.out.println(super.X); // COMPILATION ERROR: super cannot be used for interfaces
+        System.out.println(ParentInterface.X); // Correct: Use the interface name
+        System.out.println(X); // Correct: Unqualified (if not shadowed)
+    }
 }
 ```
 
