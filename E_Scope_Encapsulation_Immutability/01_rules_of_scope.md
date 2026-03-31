@@ -84,31 +84,33 @@ public class LambdaScope {
 - **Strict Rule**: Two local variables in the same block cannot share a name—it's an unambiguous error.
 - **Member Disambiguation**: A class can have a field and a method with identical names because the `()` in method calls provides a natural disambiguator.
 
-#### Edge Case Contrast: Shadowing vs. Overlapping
-| **Shadowing (VALID)** | **Overlapping (INVALID)** |
-| :--- | :--- |
-| Local variable with same name as a **class field**. | Variable with same name as an **active outer scope**. |
-| ```java class S { int x = 50; void m() { int x = 10; // VALID } } ``` | ```java void f() { int x = 1; { int x = 2; // ERROR! } } ``` |
+#### Shadowing (VALID)
+- Local variable with same name as a **class field**.
+```java
+class Shadow {
+    int x = 50;
+    void test() {
+        int x = 10; // VALID: Shadows the field
+    }
+}
+```
 
-- **Sequential Exception**: If blocks are **sequential** (non-overlapping), the name is released and can be reused:
+#### Overlapping (INVALID)
+- Declaring a name that is already active in an **outer block**.
+```java
+void overlap() {
+    int x = 1;
+    {
+        int x = 2; // ERROR!
+    }
+}
+```
+
+#### Sequential (VALID)
+- If blocks are **non-overlapping**, the name can be reused immediately.
 ```java
 { int x = 1; } // x scope ends
 { int x = 2; } // VALID: x scope is fresh 
-```
-
-```java
-public class ScopeConflict {
-    int x = 50; // Member field
-
-    void process() {
-        // int x = 10; // WOULD CAUSE CONFLICT with local scope
-        System.out.println(x); // Refers to member field
-    }
-    
-    void x() { // Method with same name as field - VALID
-         System.out.println("Method called");
-    }
-}
 ```
 
 ### 3.2 Nested Class Scope Boundaries
