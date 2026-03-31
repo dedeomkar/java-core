@@ -4,10 +4,10 @@
 - [1. Accessibility Layers](#1-accessibility-layers)
   - [1.1 Four Access Modifiers](#11-four-access-modifiers)
   - [1.2 Modern JVM & Modules](#12-modern-jvm--modules)
-- [2. Deep Dive: Private and Default](#2-deep-dive-private-and-default)
+- [2. Private and Default](#2-private-and-default)
   - [2.1 Private: The Top-Level Rule](#21-private-the-top-level-rule)
   - [2.2 Default (Package-Private)](#22-default-package-private)
-- [3. Deep Dive: Protected and Public](#3-deep-dive-protected-and-public)
+- [3. Protected and Public](#3-protected-and-public)
   - [3.1 Protected: The Subclass Nuance](#31-protected-the-subclass-nuance)
   - [3.2 Public: Global vs. Modular](#32-public-global-vs-modular)
 - [4. Inheritance and Cross-Package Access](#4-inheritance-and-cross-package-access)
@@ -31,7 +31,7 @@ The introduction of the Java Module System added a layer of complexity to these 
 
 ---
 
-## 2. Deep Dive: Private and Default
+## 2. Private and Default
 
 ### 2.1 Private: The Top-Level Rule
 - **Definition**: Accessible anywhere within the **enclosing top-level curly braces**.
@@ -46,12 +46,11 @@ The introduction of the Java Module System added a layer of complexity to these 
 
 ---
 
-## 3. Deep Dive: Protected and Public
+## 3. Protected and Public
 
 ### 3.1 Protected: The Subclass Nuance
 - **Internal**: Accessible to anything in the same package (identical to default).
 - **External**: Accessible to subclasses in **other packages**, but with a strict condition:
-> [!IMPORTANT]
 > Access from a subclass in a different package MUST be performed using a reference variable of the **subclass type**, not the parent type.
 
 ### 3.2 Public: Global vs. Modular
