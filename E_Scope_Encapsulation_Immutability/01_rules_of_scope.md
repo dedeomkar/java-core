@@ -43,7 +43,7 @@
 - **Range**: From the point of declaration to the end of the immediately enclosing block.
 - **Constraint**: Does not cover the entire block, only the code following the declaration.
 
-### 2.2 Member Scope
+### 2.2 Member Scope (Fields & methods)
 - **Range**: Active throughout the entire enclosing type (class/interface), nested types, and inherited subtypes.
 > [!NOTE]
 > Private members are technically not "inherited," so they are inaccessible in derived types, preventing scope leak.
@@ -53,6 +53,25 @@
 - **For-Loop Variables**: From declaration to the end of the loop body.
 - **Catch Clause Exceptions**: Limited to the catch block.
 - **Try-with-Resources**: Limited to the try block.
+
+```java 
+import java.util.List;
+
+public class LambdaScope {
+    public static void main(String[] args) {
+        List<String> names = List.of("Alice", "Bob", "Charlie");
+
+        // The scope of 'name' starts at the arrow (->) 
+        // and ends at the closing brace (})
+        names.forEach(name -> {
+            System.out.println("Hello, " + name);
+        });
+
+        // ERROR: 'name' is NOT in scope here!
+        // System.out.println(name); 
+    }
+}
+```
 
 ### 2.4 Static Import Scope
 - **Impact**: Brings static fields or methods into scope for the whole **compilation unit** (the `.java` file).
