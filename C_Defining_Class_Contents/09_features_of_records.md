@@ -117,6 +117,25 @@ public record Point(int x, int y) {
 - Unlike regular classes, records use the **canonical constructor** during deserialization.
 - This ensures that any validation or normalization logic in the constructor is applied when the object is reconstructed from a stream.
 
+```java
+public record SafeRange(int start, int end) implements Serializable {
+    public SafeRange {
+        if (start > end) {
+            throw new IllegalArgumentException("Start must be <= End");
+        }
+    }
+}
+
+// AT DESERIALIZATION:
+// Even if an attacker manually crafts a serialized byte stream where 'start' is 100 
+// and 'end' is 50, the JVM's deserialization call to the canonical constructor 
+// will trigger the IllegalArgumentException. The invalid object is never born.
+```
+
+> [!TIP]
+> **Data Integrity Guarantee**: 
+> In traditional Java classes, deserialization can sometimes bypass constructor-based validation (using `readObject` or non-standard mechanisms). Records solve this security and data integrity gap by mandating that high-level constructor logic is *never* skipped.
+
 ### Static Initializers and Fields
 - Records can have static fields and static initializers, but **no instance initializers**.
 
