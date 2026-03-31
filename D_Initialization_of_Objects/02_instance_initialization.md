@@ -76,7 +76,6 @@ public class InstanceForwardRef {
 Constructors are special initializers that set up the object's state.
 
 ### 4.1 Delegation Rules
-### 4.1 Delegation Rules
 - Every constructor **must** start with one of three things:
     1.  **Explicit `this(...)`**: Call another constructor in the same class.
     2.  **Explicit `super(...)`**: Call a specific constructor in the parent class.
