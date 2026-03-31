@@ -76,10 +76,22 @@ public class InstanceForwardRef {
 Constructors are special initializers that set up the object's state.
 
 ### 4.1 Delegation Rules
+### 4.1 Delegation Rules
 - Every constructor **must** start with one of three things:
-    1.  An explicit call to another constructor in the same class: `this(...)`.
-    2.  An explicit call to a superclass constructor: `super(...)`.
-    3.  An implicit call to `super()` (the zero-argument parent constructor).
+    1.  **Explicit `this(...)`**: Call another constructor in the same class.
+    2.  **Explicit `super(...)`**: Call a specific constructor in the parent class.
+    3.  **Implicit `super()`**: Automatically call the zero-arg parent constructor if neither of the above is present.
+
+```java
+// 1. Explicit this() to another constructor
+public User(String name) { this(name, 0); } 
+
+// 2. Explicit super() to parent constructor
+public Employee() { super("Staff"); } 
+
+// 3. Implicit super() (Automatically injected)
+public Customer() { /* super() call exists here */ } 
+```
 - **The "this" Restriction**: You cannot use the `this` reference in the argument list of a `this()` or `super()` call. The object is considered "uninitialized" at this specific moment.
 
 ### 4.2 Legal Arguments
