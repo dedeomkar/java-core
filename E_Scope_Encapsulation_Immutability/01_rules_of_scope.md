@@ -84,6 +84,18 @@ public class LambdaScope {
 - **Strict Rule**: Two local variables in the same block cannot share a name—it's an unambiguous error.
 - **Member Disambiguation**: A class can have a field and a method with identical names because the `()` in method calls provides a natural disambiguator.
 
+#### Edge Case Contrast: Shadowing vs. Overlapping
+| **Shadowing (VALID)** | **Overlapping (INVALID)** |
+| :--- | :--- |
+| Local variable with same name as a **class field**. | Variable with same name as an **active outer scope**. |
+| ```java class S { int x = 50; void m() { int x = 10; // VALID } } ``` | ```java void f() { int x = 1; { int x = 2; // ERROR! } } ``` |
+
+- **Sequential Exception**: If blocks are **sequential** (non-overlapping), the name is released and can be reused:
+```java
+{ int x = 1; } // x scope ends
+{ int x = 2; } // VALID: x scope is fresh 
+```
+
 ```java
 public class ScopeConflict {
     int x = 50; // Member field
