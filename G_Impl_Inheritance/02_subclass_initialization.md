@@ -111,6 +111,31 @@ class X extends Y {
 > [!WARNING]
 > **Avoid Overridable Methods in Constructors**: Never invoke a method in a constructor that can be overridden by a subclass. The subclass version will execute *before* the subclass fields have been initialized, leading to `NullPointerException` or inconsistent state.
 
+```java
+public class Parent {
+    public Parent() {
+        printName(); // CRITICAL PITFALL: Executes subclass method before subclass field is ready
+    }
+
+    public void printName() {
+        System.out.println("Parent");
+    }
+}
+
+public class Child extends Parent {
+    private String name = "Antigravity"; // Instance initialization happens AFTER Parent constructor
+
+    @Override
+    public void printName() {
+        System.out.println("Child Name: " + name.toUpperCase()); 
+    }
+
+    public static void main(String[] args) {
+        new Child(); // Throws NullPointerException! 'name' is still null here.
+    }
+}
+```
+
 - **Initialization Safety**: Ensure that all critical fields are initialized either in their declaration or in an instance initializer block to ensure they are ready before the constructor body runs.
 - **Constructor Accessibility**: A subclass must have access to at least one parent constructor. If the parent only provides `private` constructors, it cannot be subclassed (except by nested types).
 
