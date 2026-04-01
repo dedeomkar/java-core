@@ -146,7 +146,7 @@ public class X extends Y {
 7.  **Result**: The code prints **`x is 0`**.
 8.  **Completion**: After `super(200)` returns, `X.x` is finally initialized to `300`, and the body of `X()` executes.
 
-- **Initialization Safety**: Ensure that all critical fields are initialized either in their declaration or in an instance initializer block to ensure they are ready before the constructor body runs.
-- **Constructor Accessibility**: A subclass must have access to at least one parent constructor. If the parent only provides `private` constructors, it cannot be subclassed (except by nested types).
+> **Initialization Safety**: Ensure that all critical fields are initialized either in their declaration or in an instance initializer block to ensure they are ready before the constructor body runs.
+> **Constructor Accessibility**: A subclass must have access to at least one parent constructor. If the parent only provides `private` constructors, it cannot be subclassed (except by nested types).
 
 [Back to Top](#table-of-contents)
