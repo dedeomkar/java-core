@@ -44,7 +44,7 @@ public class Main {
 
 > [!IMPORTANT]
 > Virtual method invocation is the cornerstone of polymorphism in Core Java, enabling decoupled, extensible architectures where the caller doesn't need to know the specific subclass to get specialized behavior.
-
+> Demostrated in above example.
 
 ### 1.2 Applicability of Virtual Invocation
 
