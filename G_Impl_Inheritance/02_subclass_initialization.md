@@ -112,29 +112,39 @@ class X extends Y {
 > **Avoid Overridable Methods in Constructors**: Never invoke a method in a constructor that can be overridden by a subclass. The subclass version will execute *before* the subclass fields have been initialized, leading to `NullPointerException` or inconsistent state.
 
 ```java
-public class Parent {
-    public Parent() {
-        printName(); // CRITICAL PITFALL: Executes subclass method before subclass field is ready
+abstract class Y {
+    int x = 100;
+    Y(int v) {
+        x = v;
+        announce();
     }
-
-    public void printName() {
-        System.out.println("Parent");
-    }
+    abstract void announce();
 }
 
-public class Child extends Parent {
-    private String name = "Antigravity"; // Instance initialization happens AFTER Parent constructor
-
-    @Override
-    public void printName() {
-        System.out.println("Child Name: " + name.toUpperCase()); 
+public class X extends Y {
+    int x = 300;
+    X() { super(200); }
+    void announce() { 
+        System.out.println("x is " + x); 
     }
-
     public static void main(String[] args) {
-        new Child(); // Throws NullPointerException! 'name' is still null here.
+        new X(); 
     }
 }
 ```
+
+### Step-by-Step Execution Trace
+
+1.  **Start `new X()`**: The JVM begins the allocation process for a new `X` object.
+2.  **Parent Delegation**: `X()` constructor is called, which immediately delegates to `super(200)`.
+3.  **Parent Initialization (`Y`)**: 
+    -   `Y`'s instance fields are initialized: `Y.x` becomes `100`.
+    -   `Y(int v)` body executes: `Y.x` is set to `200`.
+4.  **Polymorphic Call**: `Y` calls `announce()`. Because the actual object is of type `X`, it invokes `X.announce()`.
+5.  **Field Access Paradox**: `X.announce()` prints `"x is " + x`. At this precise moment, the execution is still inside the `super(200)` call. This means **`X`'s own instance initialization (where `x = 300` happens) has not yet occurred**.
+6.  **Default Value**: Since `X.x` has not been initialized yet, it holds its default value for an `int`, which is `0`.
+7.  **Result**: The code prints **`x is 0`**.
+8.  **Completion**: After `super(200)` returns, `X.x` is finally initialized to `300`, and the body of `X()` executes.
 
 - **Initialization Safety**: Ensure that all critical fields are initialized either in their declaration or in an instance initializer block to ensure they are ready before the constructor body runs.
 - **Constructor Accessibility**: A subclass must have access to at least one parent constructor. If the parent only provides `private` constructors, it cannot be subclassed (except by nested types).
