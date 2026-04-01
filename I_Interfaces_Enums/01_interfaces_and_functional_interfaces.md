@@ -57,6 +57,8 @@ public interface Task {
 - **Constraint**: Must have a body and are implicitly `public`.
 - **Inheritance**: Subclasses inherit the implementation unless they override it.
 
+> [!Warning]
+> Notice there are no instance methods **eg. void test() {}**. We can either make `test()` -> `abstract` , `static` , `private` or `default` to resolve the compilation error.
 > [!TIP]
 > Use default methods to add new functionality to existing interfaces without breaking existing implementations. It's like adding a **Standard Operating Procedure** (SOP) that everyone can follow unless they have a specialized way of doing things.
 
