@@ -42,6 +42,10 @@ public class Main {
 }
 ```
 
+> [!IMPORTANT]
+> Virtual method invocation is the cornerstone of polymorphism in Core Java, enabling decoupled, extensible architectures where the caller doesn't need to know the specific subclass to get specialized behavior.
+
+
 ### 1.2 Applicability of Virtual Invocation
 
 - **Dynamic Binding Applies To**:
@@ -114,8 +118,5 @@ class Child extends Parent {
 
 - **Immediate Only**: `super` only refers to the immediate parent's implementation that *would* have been inherited.
 - **No Grandparents**: You cannot skip levels (e.g., `super.super.method()` is invalid syntax).
-
-> [!IMPORTANT]
-> Virtual method invocation is the cornerstone of polymorphism in Core Java, enabling decoupled, extensible architectures where the caller doesn't need to know the specific subclass to get specialized behavior.
 
 [Back to Top](#table-of-contents)
