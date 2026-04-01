@@ -60,22 +60,32 @@ public enum Day { MON, TUE }
 
 - All constructors in an enum are implicitly or explicitly `private`.
 - Attempting to declare a `public` or `protected` constructor will result in a compilation error.
-- **Default Constructor**: If no constructor is provided, a private default constructor is generated.
+- **Constructor Overloading**: Enums can have more than one constructor, as long as all are private (explicitly or implicitly).
+- **Default Constructor**: If no constructor is provided, a private default constructor is generated. If a parametrised constructor is added, the default constructor must be explicitly declared if it is still needed.
 
 > [!IMPORTANT]
 > Because only the enum itself can instantiate its members (during class loading), the set of instances is strictly controlled and guaranteed.
 
 ```java
-public enum Status {
-    ACTIVE("A"), INACTIVE("I");
+public enum Day {
+    MON("Monday"), TUE("Tuesday"), SUN; // SUN uses the 0-arg constructor
 
-    private final String code;
+    // Overloaded Constructor 1: Takes a String
+    // If this is not given then we get **Compilation error**
+    Day(String desc) {
+    }
 
-    // Must be private (implicitly private if keyword omitted)
-    Status(String code) {
-        this.code = code;
+    // Overloaded Constructor 2: 0-arg (must be explicit if Constructor 1 exists)
+    Day() {
     }
 }
+
+// Usage Example
+Day mon = Day.MON;
+System.out.println(mon.name()); // Prints: MON
+
+Day sun = Day.SUN;
+System.out.println(sun.name()); // Prints: SUN
 ```
 
 [Back to Top](#table-of-contents)
