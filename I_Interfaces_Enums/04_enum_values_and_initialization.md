@@ -71,21 +71,22 @@ public enum Day {
     MON("Monday"), TUE("Tuesday"), SUN; // SUN uses the 0-arg constructor
 
     // Overloaded Constructor 1: Takes a String
-    // If this is not given then we get **Compilation error**
     Day(String desc) {
     }
 
     // Overloaded Constructor 2: 0-arg (must be explicit if Constructor 1 exists)
     Day() {
     }
+
+    public static void main(String[] args) {
+        // Usage Example
+        Day mon = Day.MON;
+        System.out.println(mon.name()); // Prints: MON
+
+        Day sun = Day.SUN;
+        System.out.println(sun.name()); // Prints: SUN
+    }
 }
-
-// Usage Example
-Day mon = Day.MON;
-System.out.println(mon.name()); // Prints: MON
-
-Day sun = Day.SUN;
-System.out.println(sun.name()); // Prints: SUN
 ```
 
 [Back to Top](#table-of-contents)
