@@ -79,15 +79,6 @@ public class OrderedPair<E extends Comparable<E>> {
 
 - A **Wildcard (`?`)** is used to tell Java exactly how you intend to interact with the list (Reading vs Writing).
 
-#### **The PECS Rule: Producer Extends, Consumer Super**
-
-| Scenario | Rule | Primary Use |
-| :--- | :--- | :--- |
-| **Reading Data** | `? extends T` | **Producer** (List passed is a Producer) |
-| **Writing Data** | `? super T` | **Consumer** (List passed is a Consumer) |
-
----
-
 ### 2.2 Upper Bounded Wildcards (? extends T)
 
 - **Covariance**: Represents a list of "anything that is assignment compatible to T."
@@ -126,6 +117,17 @@ addStrings(new ArrayList<Object>()); // ok
 // addStrings(new ArrayList<Number>()); // not ok : compiler stop us from adding String to List<Number>
 
 ```
+
+
+### **The PECS Rule: Producer Extends, Consumer Super**
+
+| Scenario | Rule | Primary Use |
+| :--- | :--- | :--- |
+| **Reading Data** | `? extends T` | **Producer** (List passed is a Producer) |
+| **Writing Data** | `? super T` | **Consumer** (List passed is a Consumer) |
+
+---
+
 ### Benefits of wildcards :
  
 Wildcards are useful because they provide **flexibility while maintaining safety**. 
