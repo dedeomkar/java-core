@@ -98,7 +98,16 @@ public class Processor {
         if (element != null) op.accept(element);
     }
 }
+// called like this :
+Map<Integer, String> mis = Map.of(1, "One", 2, "Two");
+
+processElement(mis, 1, v -> System.out.println("Number is " + v));
+// Here you don't have to write processElement<Integer, String>(mis, 1, ...)—the compiler is smart enough 
+// to "solve the equation" for you based on the arguments you pass in.
 ```
+
+> [!NOTE]
+> This pattern is called Behavior Parameterization. Instead of just passing data (like a string), you are passing behavior (code) into the method to be executed later.
 
 #### **Understanding `Consumer<V> op.accept()`**
 
@@ -128,15 +137,7 @@ public class Container<E> {
         return new Container<>(newItem);
     }
 }
-// called like this :
-Map<Integer, String> mis = Map.of(1, "One", 2, "Two");
-
-processElement(mis, 1, v -> System.out.println("Number is " + v));
-// Here you don't have to write processElement<Integer, String>(mis, 1, ...)—the compiler is smart enough to "solve the equation" for you based on the arguments you pass in.
 ```
-
-> [!NOTE]
-> This pattern is called Behavior Parameterization. Instead of just passing data (like a string), you are passing behavior (code) into the method to be executed later.
 
 [Back to Top](#table-of-contents)
 
