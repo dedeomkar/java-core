@@ -21,8 +21,20 @@
 ### 1.1 The Extends Bound
 
 - **Constraint Mechanism**: Restricts a type parameter to only those types that provide specific features or behaviors.
-- **Assignment Compatibility**: In generics, `extends` means "is assignment compatible to" (covers both class inheritance and interface implementation).
+- **Assignment Compatibility**: In generics, `extends` means **"is assignment compatible to."** It covers three distinct scenarios:
+  1. **Identity**: `E` is exactly the same as the bound.
+  2. **Inheritance**: `E` is a subclass of the bound (if the bound is a class).
+  3. **Implementation**: `E` is a class that implements the bound (if the bound is an interface).
 - **Benefit**: Allows the compiler to guarantee the availability of specific methods (e.g., `compareTo`).
+
+| Scenario | Code Example | Meaning |
+| :--- | :--- | :--- |
+| **Class** | `<E extends Number>` | `E` can be `Number`, `Integer`, `Double`, etc. |
+| **Interface** | `<E extends Runnable>` | `E` can be any class that `implements Runnable`. |
+| **Final Class** | `<E extends String>` | `E` can **only** be `String` (because it's final). |
+
+> [!IMPORTANT]
+> Even if the bound is an **Interface**, you must use the `extends` keyword in generics. Java uses this single keyword to simplify the syntax for all upper bounds.
 
 > [!NOTE]
 > Think of a bounded type like a professional certification. You can hire "any certified electrician," which guarantees they know how to handle wiring, rather than just hiring "any person" and hoping for the best.
