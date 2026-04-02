@@ -5,7 +5,7 @@
   - [1.1 The Extends Bound](#11-the-extends-bound)
   - [1.2 Multiple Bounds](#12-multiple-bounds)
 - [2. Wildcards in Generics](#2-wildcards-in-generics)
-  - [2.1 Wildcards for Beginners (The "Fruit Crate" Analogy)](#21-wildcards-for-beginners-the-fruit-crate-analogy)
+  - [2.1 Wildcards for Beginners](#21-wildcards-for-beginners)
   - [2.2 Upper Bounded Wildcards (? extends T)](#22-upper-bounded-wildcards--extends-t)
   - [2.3 Lower Bounded Wildcards (? super T)](#23-lower-bounded-wildcards--super-t)
   - [2.4 Unbounded Wildcards (?)](#24-unbounded-wildcards-)
@@ -75,22 +75,16 @@ public class OrderedPair<E extends Comparable<E>> {
 
 ## 2. Wildcards in Generics
 
-### 2.1 Wildcards for Beginners (The "Fruit Crate" Analogy)
+### 2.1 Wildcards for Beginners
 
-Wildcards are the "key" to making generic collections flexible. Without them, Java is extremely strict about types.
-
-- **The Problem**: A **`List<Apple>`** is NOT a **`List<Fruit>`**. If it were, you could accidentally add an Orange to an Apple list, which would cause a crash.
-- **The Solution**: Use a **Wildcard (`?`)** to tell Java exactly how you intend to interact with the list (Reading vs Writing).
+- A **Wildcard (`?`)** is used to tell Java exactly how you intend to interact with the list (Reading vs Writing).
 
 #### **The PECS Rule: Producer Extends, Consumer Super**
 
-| Scenario | Rule | Analogy | Primary Use |
-| :--- | :--- | :--- | :--- |
-| **Reading Data** | `? extends T` | You are **consuming** fruit from a crate. You can safely call it "Fruit" but can't add anything new. | **Producer** (List passed is a Producer) |
-| **Writing Data** | `? super T` | You are **producing** fruit to put in a crate. You can safely add an Apple to any Fruit-compatible crate. | **Consumer** (List passed is a Consumer) |
-
-> [!TIP]
-> Use `extends` when you want to **get** items out of a collection. Use `super` when you want to **put** items into a collection.
+| Scenario | Rule | Primary Use |
+| :--- | :--- | :--- |
+| **Reading Data** | `? extends T` | **Producer** (List passed is a Producer) |
+| **Writing Data** | `? super T` | **Consumer** (List passed is a Consumer) |
 
 ---
 
@@ -111,7 +105,7 @@ public void processItems(List<? extends CharSequence> list) {
 // in usage 
 processItems(new ArrayList<String>()); // ok 
 processItems(new ArrayList<StringBuilder>()); // ok 
-processItems(new ArrayList<Number>()); // not ok : compiler stop us from prossessing Number as a CharSequence
+// processItems(new ArrayList<Number>()); // not ok : compiler stop us from prossessing Number as a CharSequence
 ```
 
 ### 2.2 Lower Bounded Wildcards (? super T)
@@ -129,12 +123,12 @@ public void addStrings(List<? super String> list) {
 // in usage 
 addStrings(new ArrayList<String>()); // ok 
 addStrings(new ArrayList<Object>()); // ok 
-addStrings(new ArrayList<Number>()); // not ok : compiler stop us from adding String to List<Number>
+// addStrings(new ArrayList<Number>()); // not ok : compiler stop us from adding String to List<Number>
 
 ```
 ### Benefits of wildcards :
  
-Wildcards are useful because they provide **flexibility while maintaining safety**. Without them, Java's generic collections are "frozen"—they only work with one exact type.  
+Wildcards are useful because they provide **flexibility while maintaining safety**. 
   
 Imagine you want to write a method that calculates the sum of all numbers in a list.
 
@@ -142,13 +136,13 @@ Imagine you want to write a method that calculates the sum of all numbers in a l
 ```java
 public double sum(List<Number> list) { ... }
 ```
-- **The Failure**: You **cannot** pass a `List<Integer>` or a `List<Double>` to this method. You would have to write 10 different methods for 10 different number types!
+- **The Failure**: You **cannot** pass a `List<Integer>` or a `List<Double>` to this method.
 
 **With Wildcards:**
 ```java
 public double sum(List<? extends Number> list) { ... }
 ```
-- **The Success**: This **one method** now works for `List<Integer>`, `List<Double>`, `List<Long>`, and even `List<BigDecimal>`. You've made your code universal.
+- **The Success**: This **one method** now works for `List<Integer>`, `List<Double>`, `List<Long>`, and even `List<BigDecimal>`.
 
 [Back to Top](#table-of-contents)
 
@@ -174,6 +168,10 @@ public double sum(List<? extends Number> list) { ... }
 // VALID: E is declared with a bound
 public <E extends CharSequence> void process(E element) { ... }
 
+// VALID (Syntactically): Return type is a List containing a wildcard
+// But discouraged as an anti-pattern
+public static List<? extends Number> transform(List<? extends Number> list) { ... }
+
 // INVALID: Cannot use wildcard in declaration
 // public <?> void process(List<?> list) { ... } 
 
@@ -181,7 +179,27 @@ public <E extends CharSequence> void process(E element) { ... }
 // public <E super String> void process(E element) { ... }
 ```
 
-### 3.2 Static Method Requirements
+
+### 3.2 The "Name vs. Description" Rule
+- **Type Parameters (`<T>`)** are **Names**. You use them to **Declare** a new variable type.
+- **Wildcards (`?`)** are **Descriptions**. You use them to **Constrain** how you use an already-existing generic class (like a `List`).
+
+| Logic | Keyword | Usage | Example |
+| :--- | :--- | :--- | :--- |
+| **Declaring** | **Named Parameter** | Giving a name to a type you will use later. | `<T extends Number>` |
+| **Calling** | **Wildcard** | Describing a list you are receiving from someone else. | `List<? extends Number>` |
+
+```java 
+
+// INVALID: Cannot use wildcard as a type parameter
+// public static <? extends Number> sum(List<? extends Number> list) { ... } 
+
+// Valid
+public static <T extends Number> T sum(List<T> list) { ... } 
+
+```
+
+### 3.3 Static Method Requirements
 
 - **Independence**: Static methods do not have access to the class's type parameters (e.g., an `E` declared at the class level).
 - **Explicit Declaration**: Every static method must declare its own type parameters before the return type.
