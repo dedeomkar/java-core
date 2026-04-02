@@ -87,15 +87,28 @@ public interface MyMap<K, V> {
 - **Standalone Expression**: Because static methods lack an instance context, they **must** declare their own type parameters before the return type.
 - **Independence**: They cannot access the type parameters defined at the class level.
 
+> [!NOTE]
+> Think of a static generic method as a **standalone workstation**. Because it is `static`, it isn't connected to the building's main power (the class's type parameters). It must specify exactly what tool types (`K` and `V`) it needs right at the entrance.
+
 ```java
 public class Processor {
     // Static methods must declare <K, V> themselves
-    public static <K, V> void processElement(MyMap<K, V> map, K key) {
-        V value = map.get(key);
-        // ... processing logic
+    public static <K, V> void processElement(Map<K, V> map, K key, Consumer<V> op) {
+        V element = map.get(key);
+        if (element != null) op.accept(element);
     }
 }
 ```
+
+#### **Understanding `Consumer<V> op.accept()`**
+
+| Component | Role | Description |
+| :--- | :--- | :--- |
+| **`Consumer<V>`** | **Functional Interface** | A "blueprint" for an operation that takes one input (`V`) and returns nothing. |
+| **`op`** | **Object Instance** | The actual behavior (often a lambda) passed into the method. |
+| **`accept()`** | **Interface Method** | The "Start" button that executes the provided behavior on a specific piece of data. |
+
+[Back to Top](#table-of-contents)
 
 ### 3.2 Instance Generic Methods
 
