@@ -132,6 +132,7 @@ public class Container<E> {
     private E item;
 
     // Instance method adding its own type parameter <F>
+    // modifier | <new_generic> | return_type | method_name (params)
     public <F> Container<F> map(Function<E, F> transformer) {
         F newItem = transformer.apply(item);
         return new Container<>(newItem);
