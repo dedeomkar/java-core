@@ -189,8 +189,11 @@ public static List<? extends Number> transform(List<? extends Number> list) { ..
 
 ```java 
 
-// INVALID: Cannot use wildcard as a type parameter
+// INVALID: Cannot use wildcard without existing parameter
 // public static <? extends Number> sum(List<? extends Number> list) { ... } 
+
+// INVALID: Cannot use the extends keyword in a method parameter
+// public static void sum(List<T extends Number> list) { ... } 
 
 // Valid
 public static <T extends Number> T sum(List<T> list) { ... } 
