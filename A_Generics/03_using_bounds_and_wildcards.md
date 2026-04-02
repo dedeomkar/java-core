@@ -99,7 +99,7 @@ processItems(new ArrayList<StringBuilder>()); // ok
 // processItems(new ArrayList<Number>()); // not ok : compiler stop us from prossessing Number as a CharSequence
 ```
 
-### 2.2 Lower Bounded Wildcards (? super T)
+### 2.3 Lower Bounded Wildcards (? super T)
 
 - **Contravariance**: Represents a list of "anything that T can be assigned to."
 - **Primary Use**: **Writing** to a structure.
@@ -117,6 +117,10 @@ addStrings(new ArrayList<Object>()); // ok
 // addStrings(new ArrayList<Number>()); // not ok : compiler stop us from adding String to List<Number>
 
 ```
+### 2.4 Unbounded Wildcards (?)
+
+- **Shorthand**: `List<?>` is equivalent to `List<? extends Object>`.
+- **Use Case**: When the code only uses methods provided by `Object` or doesn't care about the specific type of the contents.
 
 
 ### **The PECS Rule: Producer Extends, Consumer Super**
@@ -145,11 +149,6 @@ public double sum(List<? extends Number> list) { ... }
 ```
 - **The Success**: This **one method** now works for `List<Integer>`, `List<Double>`, `List<Long>`, and even `List<BigDecimal>`.
 
-
-### 2.4 Unbounded Wildcards (?)
-
-- **Shorthand**: `List<?>` is equivalent to `List<? extends Object>`.
-- **Use Case**: When the code only uses methods provided by `Object` or doesn't care about the specific type of the contents.
 
 [Back to Top](#table-of-contents)
 
