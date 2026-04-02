@@ -126,7 +126,6 @@ addStrings(new ArrayList<Object>()); // ok
 | **Reading Data** | `? extends T` | **Producer** (List passed is a Producer) |
 | **Writing Data** | `? super T` | **Consumer** (List passed is a Consumer) |
 
----
 
 ### Benefits of wildcards :
  
@@ -146,9 +145,6 @@ public double sum(List<? extends Number> list) { ... }
 ```
 - **The Success**: This **one method** now works for `List<Integer>`, `List<Double>`, `List<Long>`, and even `List<BigDecimal>`.
 
-[Back to Top](#table-of-contents)
-
----
 
 ### 2.4 Unbounded Wildcards (?)
 
