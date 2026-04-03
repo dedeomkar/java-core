@@ -85,7 +85,7 @@ String nextMsg = messages.poll();
 
 ### 2.2 Stack Semantics (LIFO)
 
-Deques should be used in preference to the legacy `Stack` class for LIFO (Last-In, First-Out) operations.
+Deques can be and should be used in preference to the legacy `Stack` class for LIFO (Last-In, First-Out) operations.
 
 #### Stack to Deque Mapping
 | Stack Method | Deque Equivalent | Behavior on Empty |
