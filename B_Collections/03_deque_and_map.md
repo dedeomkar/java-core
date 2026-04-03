@@ -194,7 +194,7 @@ System.out.println(sessionData.get("userID")); // user_123_session_A
 ```java
 Map<String, List<String>> treeMap = new HashMap<>();
 
-// Lazy-creating a list if it doesn't exist
+// 'k' represents the Key ("fruits"). Since the map is Map<String, ...>, 'k' is a String.
 treeMap.computeIfAbsent("fruits", k -> new ArrayList<>()).add("Apple");
 ```
 
