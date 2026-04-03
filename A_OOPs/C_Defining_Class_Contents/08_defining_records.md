@@ -126,4 +126,3 @@ public record Player(String username) implements Serializable {
 > [!WARNING]
 > You cannot have component names that collide with methods in `java.lang.Object` (e.g., you cannot name a component `wait`, `notify`, or `getClass`).
 
-[Back to Top](#table-of-contents)

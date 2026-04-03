@@ -52,7 +52,6 @@ if (!(obj instanceof String s)) {
 System.out.println(s.toLowerCase());
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -78,7 +77,6 @@ if (obj instanceof String s && s.length() > 5) {
 > [!WARNING]
 > Using `||` with pattern variables often leads to "not definitely assigned" errors because the compiler cannot guarantee the variable will be ready for use in all branches of the expression.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -111,7 +109,6 @@ public void process(Object obj) {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -135,4 +132,3 @@ if (strings instanceof List<String> ls) {
 // if ("test" instanceof Number n) { ... } // Compilation Error
 ```
 
-[Back to Top](#table-of-contents)

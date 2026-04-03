@@ -29,7 +29,6 @@ Instance fields are initialized every time a new object is created. This process
 > 3. **Interior**: Walls are painted and appliances are installed (Instance initializers).
 > 4. **Handover**: The final inspection and keys are handed over (Constructor body).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -44,7 +43,6 @@ Java maintains a strict top-to-bottom order for instance members as they appear 
 ### 2.2 Key Rule
 If a class has multiple instance blocks and field initializers, they interleave and execute in the order they are written in the source code.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -67,7 +65,6 @@ public class InstanceForwardRef {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -99,7 +96,6 @@ While `this` is banned, you can use:
 - Static members.
 - External references.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -115,7 +111,6 @@ If no constructor is explicitly declared, the Java compiler provides a "default 
 > [!WARNING]
 > If a parent class defines a constructor with arguments but *not* a zero-argument constructor, any child class without an explicit constructor will fail to compile. The implicit `super()` call will have no target.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -127,7 +122,6 @@ Exceptions in constructors signify that an object failed to initialize correctly
 - If a parent constructor throws a checked exception, the child constructor **must** also declare that exception in its `throws` clause.
 - You **cannot** wrap a `super()` or `this()` call in a `try-catch` block because they must be the very first statement in the constructor.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -164,4 +158,3 @@ class TryIt {
 > [!IMPORTANT]
 > Instance initialization is a multi-step process where the "state" of the object evolves line-by-line. Professional developers use `final` keys and careful ordering to avoid "reading zeroed state" bugs.
 
-[Back to Top](#table-of-contents)

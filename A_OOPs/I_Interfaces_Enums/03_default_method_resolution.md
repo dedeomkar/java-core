@@ -44,7 +44,6 @@ interface MyInterface {
 > [!NOTE]
 > Imagine a default method as a **Safety Net**. If the class provides its own specialized equipment (implementation), the net isn't used.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -93,7 +92,6 @@ class A implements W {
 - Once a class provides a concrete implementation for a default method, that default method is "hidden" from subclasses of that class.
 - Subclasses cannot bypass the parent class's implementation to reach the original interface default using `W.super`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -133,4 +131,3 @@ class A implements IV, IW {
 }
 ```
 
-[Back to Top](#table-of-contents)

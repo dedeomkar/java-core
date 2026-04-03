@@ -44,7 +44,6 @@ p.doWork(); // OK: defined in Parent
 // p.play(); // COMPILER ERROR: Parent doesn't know about 'play'
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -68,7 +67,6 @@ String s = (String) obj; // Successful cast
 > [!IMPORTANT]
 > A cast is like putting on "3D glasses" to see hidden depth in a movie. The movie (the object) hasn't changed, but your ability to perceive specific elements (methods/fields) has.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -92,7 +90,6 @@ if (p instanceof Child) {
 - **Null Interaction**: `null instanceof AnyType` is ALWAYS `false`. It never throws a `NullPointerException`.
 - **Plausibility Check**: The compiler rejects `instanceof` tests that are logically impossible (e.g., testing if an `Integer` is a `String`).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -118,4 +115,3 @@ int len = ((String) obj).length(); // CORRECT: Parentheses force the cast first
 > [!WARNING]
 > Always use extra parentheses when combining casts with method calls to ensure the cast applies to the reference, not the result of the method call.
 
-[Back to Top](#table-of-contents)

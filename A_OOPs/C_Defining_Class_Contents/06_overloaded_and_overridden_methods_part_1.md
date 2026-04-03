@@ -33,7 +33,6 @@ public class OverloadConcept {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -56,7 +55,6 @@ public class CollisionDemo {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -91,7 +89,6 @@ public class ResolutionDemo {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -118,4 +115,3 @@ public class AmbiguityDemo {
 > **Important Consideration**:
 > In low-latency systems, **overloading with primitives vs. objects** can be a trap. Calling the boxed version (e.g., `Integer`) incurs an allocation cost. Always ensure your hot-path methods have a clear, primitive-exact match to avoid the "silent" performance penalty of autoboxing.
 
-[Back to Top](#table-of-contents)

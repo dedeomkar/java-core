@@ -154,6 +154,5 @@ switch (obj) {
 - **Direct Access**: Must use `InterfaceName.method()`.
 - **Static Import Solution**: Use `import static MyInterface.myMethod` to use the simple name `myMethod()`.
 
-[Back to Top](#table-of-contents)
 
 ---

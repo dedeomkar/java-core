@@ -30,7 +30,6 @@ public class MethodStructure {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -56,7 +55,6 @@ public class ParameterExample {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -81,7 +79,6 @@ public class ExceptionExample {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -104,7 +101,6 @@ public class ReturnExample {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -157,4 +153,3 @@ public class InvocationDemo {
 > **Important Consideration**:
 > In performance-critical Java code, static methods are often used for utility functions to avoid the overhead of object instantiation and the slight cost of dynamic dispatch (virtual method lookups).
 
-[Back to Top](#table-of-contents)

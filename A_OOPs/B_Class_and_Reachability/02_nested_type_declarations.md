@@ -21,7 +21,6 @@ By default, the fully qualified name of a nested type is `OuterName.NestedName`.
 - Nested classes can have any of the standard access modifiers: `public`, `protected`, default (package-private), and `private`.
 - The enclosing (outer) class and its nested classes share privileged access to each other's members, including `private` fields and methods.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -53,7 +52,6 @@ class Client {
 
 > **Important Considerations**: If you have imported the nested class directly (e.g., `import package.Outer.Nested;`), you can instantiate it using just `new Nested()`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -100,7 +98,6 @@ public class Outer { // <--- Top-level curly brace starts here
 
 > **Important Considerations**: In the example above, `Nester1` and `Nester2` are siblings. Because they share the same top-level enclosing braces (`Outer`), they can access each other's private members, provided they have a reference to an instance of the target class.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -203,4 +200,3 @@ In this builder layout:
 - The `Builder` class creates the `BuildMe` instance and directly accesses its private fields (`name`, `date`) to populate the data.
 - The access is perfectly legal because the `Builder` class sits strictly within the top-level curly braces of `BuildMe`.
 
-[Back to Top](#table-of-contents)

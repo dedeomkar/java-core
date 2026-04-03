@@ -69,7 +69,6 @@ public class OrderedPair<E extends Comparable<E>> {
 > [!IMPORTANT]
 > Using a comma (`,`) instead of an ampersand (`&`) would declare multiple separate type parameters rather than adding multiple bounds to one parameter.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -150,7 +149,6 @@ public double sum(List<? extends Number> list) { ... }
 - **The Success**: This **one method** now works for `List<Integer>`, `List<Double>`, `List<Long>`, and even `List<BigDecimal>`.
 
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -207,7 +205,6 @@ public static <T extends Number> T sum(List<T> list) { ... }
 > [!WARNING]
 > An instance method *can* access the class-level type parameter, but a static method exists outside the context of a specific instance and thus has no "expression" from which to infer the class's `E`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -227,4 +224,3 @@ public void modify(Function<? super A, ? extends A> transformer) {
 }
 ```
 
-[Back to Top](#table-of-contents)

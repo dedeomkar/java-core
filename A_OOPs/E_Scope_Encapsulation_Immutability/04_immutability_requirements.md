@@ -68,6 +68,5 @@ Use `List.copyOf()` or `Collections.unmodifiableList()` to protect internal list
 - **Deep Copy**: Required if the objects *inside* the list are mutable (e.g., a `List<StringBuilder>`). 
 - **Recommendation**: Always prefer lists of immutable objects (e.g., `List<String>`) to avoid the overhead of deep copying.
 
-[Back to Top](#table-of-contents)
 
 ---

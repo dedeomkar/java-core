@@ -103,6 +103,5 @@ var res = (condition) ? "Hello" : 99;
 > [!TIP]
 > Use your IDE (like IntelliJ) to hover over a `var` declaration. It will often reveal these complex, nondenotable intersection types that you wouldn't be able to declare manually.
 
-[Back to Top](#table-of-contents)
 
 ---

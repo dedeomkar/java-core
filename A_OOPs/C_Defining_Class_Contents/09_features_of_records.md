@@ -154,4 +154,3 @@ public record Config(String key) {
 > [!IMPORTANT]
 > Because records are aimed at immutability, the `final` components cannot be reassigned. If you need to change a value, you should create a new record instance with the updated data.
 
-[Back to Top](#table-of-contents)

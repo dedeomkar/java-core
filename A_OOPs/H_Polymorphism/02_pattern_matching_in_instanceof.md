@@ -56,7 +56,6 @@ if (thing instanceof String s) {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -94,7 +93,6 @@ if (obj instanceof Integer s) { // Valid: This is a new 's' for this block
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -132,7 +130,6 @@ if (obj instanceof Account(int id, int bal, Person(String name))) {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -169,4 +166,3 @@ if (n instanceof String s) {
 }
 ```
 
-[Back to Top](#table-of-contents)

@@ -47,7 +47,6 @@ String s = (String) obj; // Valid downcast
 - **Result**: Rejected at **compile-time**.
 - **Reason**: There is no possible "is-a" relationship; a `String` can never be an `Integer`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -70,7 +69,6 @@ ArrayList list = new ArrayList();
 Runnable r = (Runnable) list; 
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -98,7 +96,6 @@ String s = "Finality";
 > [!IMPORTANT]
 > The `final` modifier acts as a lock on the hierarchy, allowing the compiler to perform much stricter static analysis on casting possibilities.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -112,4 +109,3 @@ String s = "Finality";
 > [!TIP]
 > Use the `instanceof` operator to verify assignment compatibility before performing a downcast to avoid runtime crashes.
 
-[Back to Top](#table-of-contents)

@@ -28,7 +28,6 @@ public class MyObject {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -61,7 +60,6 @@ public class BindingDemo {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -83,7 +81,6 @@ public class ReceiverDemo {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -119,4 +116,3 @@ public class PassingDemo {
 > **Important Consideration**:
 > In low-latency systems, understanding pass-by-value is critical for managing "Object Pooling." If you pass an object to a method and expect it to be "filled," you are relying on mutability, which requires careful synchronization or single-threaded ownership to avoid data races.
 
-[Back to Top](#table-of-contents)

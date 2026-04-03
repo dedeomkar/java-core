@@ -39,7 +39,6 @@ public class Processor {
 
 > **Important Considerations**: A local class is only visible and understandable within the curly braces of the method that declared it. Attempting to use a local class as the return type of the method will fail to compile because the caller has no idea what that class is. (However, returning it as a generic `Object` or a known `Interface` is completely valid).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -75,7 +74,6 @@ public void attemptClosure() {
 
 > **Best Practice/Consideration**: Keep in mind that for reference types (objects), "effectively final" means the *reference* cannot be reassigned to a new object. It does **not** mean the object itself cannot mutate its internal state!
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -124,7 +122,6 @@ public void setup() {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -157,4 +154,3 @@ While modern Java heavily relies on Lambda expressions for concise logic, there 
 - **Constructor support**: You cannot pass arguments to an interface constructor (interfaces have no constructors)
 
 
-[Back to Top](#table-of-contents)

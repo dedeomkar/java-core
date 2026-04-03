@@ -81,6 +81,5 @@ public class Q extends P {
 
 - **Reasoning**: If `protected` allowed access via a Parent reference (`P p`), anyone could bypass encapsulation simply by creating a new instance of the parent class.
 
-[Back to Top](#table-of-contents)
 
 ---

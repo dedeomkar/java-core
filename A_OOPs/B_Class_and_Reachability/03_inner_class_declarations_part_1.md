@@ -20,7 +20,6 @@ If a class is declared inside another class but is **neither labeled `static` no
 - You should use an inner class when the nested component strictly requires access to the exact state (instance variables) of the outer object that spawned it. 
 - If the nested class does not need to access instance members of the outer class, always declare it as a `static class` (a nested class) to save memory and reduce tight coupling.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -36,7 +35,6 @@ Every instance of an inner class possesses an embedded or implicit reference to 
 ### Everyday Analogy
 Think of an inner class like an employee badge, and the outer class as the company building. An employee badge is functionally useless (and cannot be created) without an associated company building. The badge always grants the holder implicit access to the specific company building it was issued for, and you cannot suddenly reassign the badge to a different company building.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -55,7 +53,6 @@ Instead, the `Iterator` is implemented as an instance **inner class**.
 - Each client gets their own `Iterator` instance with its own `progress` integer.
 - Because it's an inner class, the `Iterator` gets implicit, privileged access to the private data array of the exact `Iterable` list that created it. 
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -95,4 +92,3 @@ public class Outer {
 
 > **Important Considerations**: If the inner class also defined an instance variable named `x` (i.e., shadowing the variable), simply typing `x` would resolve to the closest scope (the inner's `x`). To explicitly refer to the outer `x` in that scenario, a special "qualified this" syntax is strictly required (covered in Part 2).
 
-[Back to Top](#table-of-contents)

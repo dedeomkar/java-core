@@ -66,7 +66,6 @@ public class OverrideHideDemo {
 > **Reference Visibility vs Object Implementation**
 > Remember: The **Reference Type** acts as a filter. It determines which method names and parameter signatures the compiler is allowed to "see." If a method (or an overload) only exists in the subclass, you **must cast** the reference to that subclass type before you can invoke it.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -93,7 +92,6 @@ class StringProducer extends Producer {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -112,7 +110,6 @@ s.play(); // Runs Music's play() -> Dynamic Binding (The Actor)
 System.out.println(s.volume); // Reads Sound's volume field -> Static Binding (The Script)
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -146,4 +143,3 @@ class MyNumber implements Comparable<MyNumber> {
 > **Important Consideration**:
 > In low-latency performance tuning, be aware of bridge methods. Because they involve a **type cast from Object**, they can cause a tiny performance overhead and, more importantly, could lead to `ClassCastException` if types are misused at runtime.
 
-[Back to Top](#table-of-contents)

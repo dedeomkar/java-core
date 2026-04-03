@@ -57,7 +57,6 @@ public class Main {
     - Static methods (associated with the class, not the instance).
     - Fields (always determined by the reference type).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -89,7 +88,6 @@ class Child extends Parent {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -119,4 +117,3 @@ class Child extends Parent {
 - **Immediate Only**: `super` only refers to the immediate parent's implementation that *would* have been inherited.
 - **No Grandparents**: You cannot skip levels (e.g., `super.super.method()` is invalid syntax).
 
-[Back to Top](#table-of-contents)

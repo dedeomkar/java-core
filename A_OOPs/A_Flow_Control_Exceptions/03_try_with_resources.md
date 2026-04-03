@@ -62,7 +62,6 @@ public void copyFile() throws IOException {
 ```
 
 ---
-[Back to Top](#table-of-contents)
 
 ## 2. Resource Requirements and Scope
 
@@ -119,4 +118,3 @@ public void handleExternalResource() {
 ```
 
 ---
-[Back to Top](#table-of-contents)

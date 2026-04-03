@@ -22,7 +22,6 @@ At intervals, the JVM performs a "reachability analysis."
 - Note that reachability is independent of the GC algorithm—for instance, the Epsilon GC never collects anything, but reachability rules still apply!
 - Reachability analysis has absolutely nothing to do with "reference counting" (a mechanism used in older languages and systems).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -39,7 +38,6 @@ The roots of reachability are defined as:
 Imagine the memory heap as a giant spider web of objects. 
 The active execution threads and static variables are the "anchors" attached to solid rock. The JVM pulls on these anchors. If an object is woven into the web connecting back to the anchor, it is "reachable" and safe. If an object (or a cluster of objects) has detached and floats loosely, the JVM sweeps it away, regardless of whether the floating objects are holding onto each other.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -68,7 +66,6 @@ public void performWork() {
 // The 'message' variable no longer exists, so the String object becomes unreachable.
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -101,4 +98,3 @@ public void callerMethod() {
 > **Important Considerations**: 
 > Exam questions frequently try to trick you by having a method build an object, assign variables to `null`, but then return a reference that was saved beforehand. Trace the pointer, not just the local variable names!
 
-[Back to Top](#table-of-contents)

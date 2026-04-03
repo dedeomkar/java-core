@@ -51,7 +51,6 @@ public class MyList<E> implements Iterable<E> {
 > **Important Considerations**: 
 > Notice that `count` and `data` are seamlessly referenced by the inner class method as if they actually belonged to it natively.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -86,7 +85,6 @@ Outer.Inner inner = outer.new Inner();
 Outer.Inner quickInner = new Outer().new Inner();
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -99,7 +97,6 @@ The compiler works in the background to inject the connection between the inner 
 2. If you disassemble the bytecode, the constructor for `MyIterator` (even if you defined it taking no arguments) will actually take an instance of `MyList` as the **first implicit argument**. 
 3. When `new MyIterator()` runs, the compiler injects the current `this` parameter from the invoking context.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -138,4 +135,3 @@ public class Outer {
 > **Important Considerations**: In Java 11 and later, standard inner classes cannot declare `static` members (methods, fields, types), with one exception: constants. A `static final` field initialized with a constant expression is considered valid. 
 > Ex: `static final String constName = "Valid inside Inner";`
 
-[Back to Top](#table-of-contents)

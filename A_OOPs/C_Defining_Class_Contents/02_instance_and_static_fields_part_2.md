@@ -14,7 +14,6 @@
 ### Definition
 - An unqualified identifier is a variable name used directly without any prefix (e.g., `theField` instead of `myObj.theField` or `this.theField`).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -36,7 +35,6 @@ When encountering an unqualified identifier, the Java compiler resolves the refe
 > **Important Consideration**:
 > You can only travel exactly *one* level up the hierarchy using `super.`. Using `super.super.identifier` is invalid Java syntax.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -74,7 +72,6 @@ public class StatTest {
 ### Keyword Restrictions
 - **The `var` Keyword**: You cannot use `var` for class/instance fields. It is strictly reserved for method-local variables.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -113,7 +110,6 @@ public class FieldBindingDemo {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -139,4 +135,3 @@ class Child implements ParentInterface {
 }
 ```
 
-[Back to Top](#table-of-contents)

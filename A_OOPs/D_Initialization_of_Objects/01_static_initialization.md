@@ -27,7 +27,6 @@ Static fields are associated with the class itself rather than any specific inst
 > 1. **Stage Reset**: First, all equipment is turned off (zeroed).
 > 2. **Stage Prep**: Then, specific props are placed and lights are set according to the script (initialization code).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -52,7 +51,6 @@ public class Sequence {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -78,7 +76,6 @@ public class ForwardRef {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -117,7 +114,6 @@ public class ExceptionSafety {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -162,4 +158,3 @@ class TryIt {
 > [!IMPORTANT]
 > Order matters more than anything in static initialization. Even if a field is eventually assigned a value like `100`, readers earlier in the file will see the default `0` or `null`.
 
-[Back to Top](#table-of-contents)

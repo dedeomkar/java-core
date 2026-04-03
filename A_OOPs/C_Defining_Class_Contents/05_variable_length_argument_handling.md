@@ -31,7 +31,6 @@ public class VarargsConcept {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -52,7 +51,6 @@ public void showCount(int... numbers) {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -69,7 +67,6 @@ To keep method resolution predictable, Java enforces two strict rules for vararg
 // public void error2(int... ids, String... names) {} // Only one allowed
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -105,4 +102,3 @@ public class MutationDemo {
 > **Important Consideration**:
 > In low-latency systems, being mindful of array allocation is crucial. When you call a varargs method with comma-separated items, a **new array is allocated** to wrap them. For performance-critical hot paths, it is often better to use a fixed number of parameters or reuse an existing array to avoid frequent garbage collection (GC) pressure.
 
-[Back to Top](#table-of-contents)

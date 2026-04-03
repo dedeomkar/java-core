@@ -45,7 +45,6 @@ public class InvalidAccountStateException extends RuntimeException {
 ```
 
 ---
-[Back to Top](#table-of-contents)
 
 ## 2. Implementation Details
 
@@ -92,4 +91,3 @@ public class ConfigurationLoadException extends RuntimeException {
 > **Important Consideration**: Always be aware of and adhere to your local organizational guidelines regarding exception design. What is technically correct by language definition might be forbidden by company policy.
 
 ---
-[Back to Top](#table-of-contents)

@@ -24,7 +24,6 @@ public class DeclarationExample {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -61,7 +60,6 @@ public class FinalFieldExample {
 > **Important Consideration**:
 > In low-latency systems, using `final` fields is highly recommended as it enables JVM optimizations and guarantees thread-safety during object publication without explicit synchronization.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -80,7 +78,6 @@ public class ArrayExample {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -118,7 +115,6 @@ public void testVariables() {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -143,4 +139,3 @@ public class Initializers {
 }
 ```
 
-[Back to Top](#table-of-contents)

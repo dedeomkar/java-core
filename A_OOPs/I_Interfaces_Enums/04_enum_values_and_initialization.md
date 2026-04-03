@@ -38,7 +38,6 @@ public enum Suit {
 - Enums are full-fledged objects, not just primitive integers.
 - This prevents "off-by-one" errors or passing invalid integers where a specific category is expected.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -89,7 +88,6 @@ public enum Day {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -105,7 +103,6 @@ public enum Day {
 - **Instance vs. Static**: Instance initializers and constructors for enum constants run **before** the static initializers of the enum class have finished.
 - This is a critical distinction from regular classes where static blocks usually complete before any instance is created.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -124,4 +121,3 @@ public enum Day {
 > [!TIP]
 > Always use `==` for enums. It is not only faster but also null-safe (e.g., `myEnum == Day.MON` works even if `myEnum` is null).
 
-[Back to Top](#table-of-contents)

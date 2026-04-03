@@ -87,6 +87,5 @@ int x = 1, y = 2; // Success
 var a = 1, b = 2; // Failure: Multi-variable declaration not allowed with var
 ```
 
-[Back to Top](#table-of-contents)
 
 ---

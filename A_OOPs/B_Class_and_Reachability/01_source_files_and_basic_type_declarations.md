@@ -42,7 +42,6 @@ class HelperType {
 > - If the package name doesn't match the physical directory structure (e.g., package `src` inside a directory named `other`), compilation can fail or cause runtime/classpath issues depending on the compiler.
 > - Having two `public` types in one file will cause a compilation error.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -72,7 +71,6 @@ public abstract class Animal extends Entity implements Identifiable {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -116,7 +114,6 @@ public class OuterClass {
 > **Important Considerations**: 
 > - Abstract classes exist solely to be subclassed; thus, combining `abstract` with `final` is a logical contradiction and results in a compilation failure.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -166,4 +163,3 @@ public class ComprehensiveClass {
 
 > **Important Considerations**: Be wary of scenarios where an interface has a field like `int x = 1;`. This is implicitly `public static final x = 1;`. Modifying it later in code will result in a compilation error because it is a constant.
 
-[Back to Top](#table-of-contents)

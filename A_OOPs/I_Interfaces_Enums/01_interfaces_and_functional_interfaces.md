@@ -63,7 +63,6 @@ public interface Task {
 > [!TIP]
 > Use default methods to add new functionality to existing interfaces without breaking existing implementations. It's like adding a **Standard Operating Procedure** (SOP) that everyone can follow unless they have a specialized way of doing things.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -101,7 +100,6 @@ interface Constants {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -118,7 +116,6 @@ interface Constants {
 - **Abstract to Default**: Provide a body for a previously abstract method.
 - **Default to Abstract**: Remove the body, forcing subclasses to provide an implementation.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -146,4 +143,3 @@ interface MyFunction {
 - **Purpose**: Documents the intent and asks the compiler to verify that the interface meets the functional interface requirements.
 - **Lambda Compatibility**: Any interface meeting the SAM rule can be implemented by a lambda expression, regardless of whether the annotation is present.
 
-[Back to Top](#table-of-contents)

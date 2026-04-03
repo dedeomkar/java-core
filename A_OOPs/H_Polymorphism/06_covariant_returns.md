@@ -32,7 +32,6 @@ The Java compiler enforces several syntax rules to maintain this contract:
 - **Accessibility**: The overriding method's accessibility must **not be less** than the parent's. (e.g., `protected` can become `public`, but not `private`).
 - **Checked Exceptions**: An overriding method cannot declare **new or broader** checked exceptions than those in the parent method.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -78,7 +77,6 @@ class Concurrent extends Base {
 > [!WARNING]
 > You cannot return a completely unrelated type like `String` even if it's a reference type, as it doesn't satisfy the "is-a" relationship with `Number`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -109,7 +107,6 @@ class PrimitiveChild extends PrimitiveBase {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -121,4 +118,3 @@ class PrimitiveChild extends PrimitiveBase {
 - It ensures the compiler verifies the signature and return type compatibility.
 - If you accidentally change the signature (e.g., by changing an argument type), the `@Override` annotation will trigger a compilation error, preventing a subtle "overloading" bug.
 
-[Back to Top](#table-of-contents)

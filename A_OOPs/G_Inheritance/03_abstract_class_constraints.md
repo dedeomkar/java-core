@@ -34,7 +34,6 @@
 > [!NOTE]
 > **The Blueprint Analogy**: Think of an abstract class as a blueprint for a "Generic Engine." You cannot drive a blueprint; you can only drive a physical engine (concrete class) built according to those specifications.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -56,7 +55,6 @@ public abstract class BaseProcessor extends RootHandler implements Runnable, Aut
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -94,7 +92,6 @@ public abstract class DatabaseConnector {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -124,7 +121,6 @@ public abstract class Shape {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -135,4 +131,3 @@ public abstract class Shape {
 
 - **State Locality**: Use protected fields in abstract classes to keep data close to the logic that operates on it, improving L1/L2 cache hits compared to accessing data via interface methods.
 
-[Back to Top](#table-of-contents)

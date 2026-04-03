@@ -35,7 +35,6 @@
 - **Runtime Reality**: At runtime, a `List<String>` is simply a `List`.
 - **Lightweight Execution**: This prevents the JVM from having to create unique types for every generic combination (e.g., no separate `StringList` class).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -74,7 +73,6 @@ names.add("Alice");
 String name = names.get(0); 
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -106,7 +104,6 @@ List<String> list2 = new ArrayList<>();
 List<String> specific = List.<String>of("A", "B");
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -142,7 +139,6 @@ if (cs instanceof List<String> list) {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -165,4 +161,3 @@ javap -c GenericExample.class
 # 15: checkcast      #6       // class java/lang/String
 ```
 
-[Back to Top](#table-of-contents)

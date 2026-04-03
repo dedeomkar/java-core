@@ -34,7 +34,6 @@
 > [!NOTE]
 > **The Authorized Driver Analogy**: Barron and Olivia explain that a "Traditional" hierarchy is like a public road—anyone can drive any car they want. A **Sealed** hierarchy is like a high-security facility where only specific authorized drivers (permitted subtypes) are allowed entry.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -58,7 +57,6 @@ public sealed interface Vehicle permits Car, Truck {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -101,7 +99,6 @@ public non-sealed class HeavyTruck extends Truck {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -121,7 +118,6 @@ public non-sealed class HeavyTruck extends Truck {
 > [!WARNING]
 > **Constraint Failure**: If you attempt to add a `Bicycle` class to the `Vehicle` hierarchy without listing it in the `permits` clause, the compiler will reject it, alerting you that the existing design (like weight calculations) wasn't built to handle it.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -133,4 +129,3 @@ public non-sealed class HeavyTruck extends Truck {
 - **Reduced Runtime Errors**: By preventing unknown subtypes, you eliminate the risk of "Falling through" safely designed logic, which is critical for high-stakes financial or low-latency systems.
 - **Static Analysis**: Tools can better optimize code when the entire inheritance tree is known at compile time.
 
-[Back to Top](#table-of-contents)

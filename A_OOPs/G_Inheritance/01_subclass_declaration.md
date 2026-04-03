@@ -43,7 +43,6 @@ public class SmartPhone extends ElectronicDevice implements Callable, Portable {
 - If no `extends` clause is provided, the class implicitly extends `java.lang.Object`.
 - This ensures every class in Java shares a common set of baseline behaviors (e.g., `toString()`, `equals()`).
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -69,7 +68,6 @@ public final class SecureToken { }
 > [!IMPORTANT]
 > The subclass must have access to at least one constructor in the parent class to successfully initialize the "foundation" of the object.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -103,7 +101,6 @@ class Child extends Parent {
 - Used to verify that a method is actually overriding a parent method.
 - **Verification only**: It does not *cause* overriding; it simply asks the compiler to double-check your work.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -127,7 +124,6 @@ class CustomUtils extends Utils {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -158,4 +154,3 @@ public void process(List<String> list) {}
 > [!WARNING]
 > Accessing static methods via object references (e.g., `myObj.staticMethod()`) is legal but highly discouraged as it masks the fact that the call depends on the reference type, not the object type.
 
-[Back to Top](#table-of-contents)

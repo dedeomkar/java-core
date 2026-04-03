@@ -92,4 +92,3 @@ public void brokenPreciseRethrow() throws Exception {
 > **Important Consideration**: Precise rethrowing is a relatively modern Java feature. If you read old code or tutorials, you might see them claiming that catching and rethrowing `Exception` forces the method signature to `throws Exception`. In modern Java, this is not required as long as the exception variable remains effectively final and is exactly the one thrown.
 
 ---
-[Back to Top](#table-of-contents)

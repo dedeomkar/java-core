@@ -54,7 +54,6 @@ Pair<String> ps = new Pair<>("NIHAO", "Hello");
 String leftValue = ps.getLeft(); 
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -76,7 +75,6 @@ public interface MyMap<K, V> {
 > [!IMPORTANT]
 > Standard naming conventions use single capital letters: `K` for Key, `V` for Value, `E` for Element, `T` for Type.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -117,7 +115,6 @@ processElement(mis, 1, v -> System.out.println("Number is " + v));
 | **`op`** | **Object Instance** | The actual behavior (often a lambda) passed into the method. |
 | **`accept()`** | **Interface Method** | The "Start" button that executes the provided behavior on a specific piece of data. |
 
-[Back to Top](#table-of-contents)
 
 ### 3.2 Instance Generic Methods
 
@@ -140,7 +137,6 @@ public class Container<E> {
 }
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -160,7 +156,6 @@ public class Container<E> {
 > [!WARNING]
 > Attempting to use an enclosing type parameter `T` in an inner interface will result in a compilation error because interfaces cannot be "instance-specific" in their generic declaration.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -181,4 +176,3 @@ public class TextPair<F extends CharSequence> extends Pair<F> {
 
 - **Specialization**: In the example above, `TextPair` ensures that its `Pair` functionality is only ever used with `CharSequence` types (like `String` or `StringBuilder`).
 
-[Back to Top](#table-of-contents)

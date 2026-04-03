@@ -43,7 +43,6 @@ public class Circle implements ColorableShape {
 - **Abstract Nature**: The resulting type remains abstract and can continue to contain abstract methods.
 - **Subclass Responsibility**: Any concrete class that eventually derives from these abstract types must provide the missing implementations.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -63,7 +62,6 @@ public class Circle implements ColorableShape {
 > [!TIP]
 > Always use `@Override`. It's your **Safety Net**. If you accidentally change a method signature (e.g., `doStuff(int x)` to `doStuff(long x)`), the compiler will immediately warn you that you're no longer overriding the intended method.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -112,4 +110,3 @@ class D implements U {
 }
 ```
 
-[Back to Top](#table-of-contents)

@@ -62,7 +62,6 @@ System.out.println(heart.ordinal()); // Prints: 0
 > [!IMPORTANT]
 > Because every reference to a specific Enum value (like `Suit.HEARTS`) always points to the exact same object in a JVM, reference comparison (`==`) is guaranteed to work and is faster than `equals()`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -90,7 +89,6 @@ Suit[] allSuits = Suit.values();     // {HEARTS, DIAMONDS, CLUBS, SPADES}
 Suit heart = Enum.valueOf(Suit.class, "HEARTS");
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -142,4 +140,3 @@ for (Suit s : Suit.values()) {
 // Outputs: Hearts : coeurs
 ```
 
-[Back to Top](#table-of-contents)

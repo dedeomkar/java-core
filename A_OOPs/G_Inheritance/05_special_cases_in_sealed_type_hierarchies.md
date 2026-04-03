@@ -31,7 +31,6 @@ final class Sub3 extends Base {}
 > [!IMPORTANT]
 > Any attempt to add a subclass in a different file without updating the `permits` clause will result in a compilation error, even if the subclass is in the same package as the sealed class.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -59,7 +58,6 @@ public final class Tomato extends Fruit {}
 // Tomato would HAVE to be in com.fruits.
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -95,7 +93,6 @@ public enum SubEnum implements BaseIF {
 > [!WARNING]
 > You cannot mark an Enum as `final` or `sealed`. They are permitted as leaf nodes because their subclassing is internally strictly controlled by the JVM.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -119,4 +116,3 @@ Every subtype of a sealed class must explicitly declare its own "sealed" status 
 | `sealed` | Only specific, listed subclasses allowed in its own `permits` clause. |
 | `non-sealed` | Any subclass allowed; effectively returns to traditional inheritance. |
 
-[Back to Top](#table-of-contents)

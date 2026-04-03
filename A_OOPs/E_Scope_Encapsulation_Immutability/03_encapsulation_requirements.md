@@ -69,6 +69,5 @@ public int[] getValues() {
 - **The Problem**: A subclass can override your validated methods and "short-circuit" your logic.
 - **The Fix**: Mark the class as **`final`** or make critical methods final.
 
-[Back to Top](#table-of-contents)
 
 ---

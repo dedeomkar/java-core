@@ -78,7 +78,6 @@ try {
 - This is known as **Exception Masking**, where an error during cleanup hides the original cause of the failure.
 
 ---
-[Back to Top](#table-of-contents)
 
 ## 2. Exception Categories and Hierarchy
 
@@ -117,7 +116,6 @@ try {
       - `IllegalArgumentException` (Unchecked)
 
 ---
-[Back to Top](#table-of-contents)
 
 ## 3. Throwing and Declaring Exceptions
 
@@ -177,4 +175,3 @@ try { // Outer try
   5. The outer `finally` block executes.
 
 ---
-[Back to Top](#table-of-contents)
