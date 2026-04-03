@@ -1,6 +1,6 @@
 # Collections Framework Fundamentals - Part 2
 
-## Table of Contents  
+## Table of Contents
 - [1. The Collections Hierarchy](#1-the-collections-hierarchy)
   - [1.1 The Iterable Interface](#11-the-iterable-interface)
   - [1.2 The Collection Interface](#12-the-collection-interface)

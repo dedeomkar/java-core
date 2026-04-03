@@ -40,18 +40,23 @@ Java's Queue API provides two forms for each major operation: one that throws an
 | **Examine** | `element()` | `peek()` |
 
 ```java
-Queue<String> messages = new LinkedList<>();
+// Choice: ArrayDeque is typically preferred for performance.
+// LinkedList is used here as a common pedagogical example.
+Queue<String> messages = new ArrayDeque<>(); 
 
-// Safe insertion in capacity-restricted queues
+// Safe insertion
 boolean accepted = messages.offer("Incoming FIX Message"); 
 
-// Safe retrieval - returns null if empty instead of NoSuchElementException
+// Safe retrieval - returns null if empty
 String nextMsg = messages.poll(); 
-
-if (nextMsg != null) {
-    process(nextMsg);
-}
 ```
+
+> [!IMPORTANT]
+> **Performance Note: LinkedList vs. ArrayDeque**
+> In high-throughput, low-latency systems, **`ArrayDeque`** is generally superior to `LinkedList` for `Queue` operations:
+> - **Memory Overhead**: `LinkedList` allocates a new `Node` object for every element, incurring garbage collection pressure.
+> - **Cache Locality**: `ArrayDeque` uses a contiguous array, which is significantly more CPU-cache friendly.
+> - **Null Handling**: `ArrayDeque` **forbids null elements**, while `LinkedList` allows them.
 
 [Back to Top](#table-of-contents)
 
@@ -83,17 +88,26 @@ if (nextMsg != null) {
 
 Deques should be used in preference to the legacy `Stack` class for LIFO (Last-In, First-Out) operations.
 
+#### Stack to Deque Mapping
+| Stack Method | Deque Equivalent | Behavior on Empty |
+| :--- | :--- | :--- |
+| `push(e)` | `addFirst(e)` | Throws Exception (if full) |
+| `pop()` | `removeFirst()` | Throws `NoSuchElementException` |
+| `peek()` | `peekFirst()` | Returns `null` |
+
 ```java
+// Rule of Thumb: Never use the legacy 'Stack' class (synchronized overhead).
 Deque<String> stack = new ArrayDeque<>();
 
-// LIFO Operations
+// LIFO Operations (Push/Pop)
 stack.push("Base Layer");
-stack.push("Middle Layer");
 stack.push("Top Layer");
 
 System.out.println(stack.pop());  // "Top Layer"
-System.out.println(stack.peek()); // "Middle Layer"
 ```
+
+> [!TIP]
+> Use **`ArrayDeque`** for stacks because it is faster than `Stack` (no synchronization) and `LinkedList` (no node allocation). It behaves as a circular buffer, making it very efficient for both ends.
 
 ### 2.3 Specialized Deque Methods
 
