@@ -129,21 +129,33 @@ System.out.println(stack.pop());  // "Top Layer"
 > Think of a Map like a **coat check system**. You give a unique tag (Key) and get back a specific coat (Value). The tag is yours and unique; if two people had the same tag, the system would break.
 
 #### Common Operations
-- **Return Values**: Most modification methods (like `put` or `remove`) return the **previous value** associated with the key, or `null`.
-- **`putIfAbsent(K, V)`**: Only inserts if the key is missing or mapped to `null`.
-- **`getOrDefault(key, default)`**: Prevents `null` handling by providing a fallback.
+
+| Operation Category | Methods | Notes |
+| :--- | :--- | :--- |
+| **Insertion** | `put(K, V)`, `putIfAbsent(K, V)`, `putAll(Map)` | `put` returns previous value. `putAll` acts as a bulk "upsert". |
+| **Retrieval** | `get(K)`, `getOrDefault(K, default)` | `getOrDefault` avoids `null` pointer risks. |
+| **Removal** | `remove(K)`, `remove(K, V)`, `clear()` | `remove(K, V)` only removes if the pair matches. |
+| **Updates** | `replace(K, V)`, `replace(K, oldV, newV)` | `replace` won't insert a new entry. |
+| **Querying** | `containsKey(K)`, `containsValue(V)` | `containsKey` is highly optimized. |
+| **Metatdata** | `size()`, `isEmpty()` | Report current entry count. |
+| **Identity** | `equals(other)`, `hashCode()` | Consistent across different implementation types. |
 
 ```java
 Map<String, Double> stockPrices = new HashMap<>();
 
-// Standard update
-Double oldPrice = stockPrices.put("AAPL", 150.0);
+// Bulk addition
+stockPrices.putAll(Map.of("AAPL", 150.0, "GOOG", 2800.0));
 
-// Conditional update
-stockPrices.putIfAbsent("GOOG", 2800.0);
+// Conditional removal (Safe update)
+boolean removed = stockPrices.remove("AAPL", 145.0); // Returns false
 
-// Safe retrieval
-Double price = stockPrices.getOrDefault("TSLA", 0.0);
+// Atomic replacement
+stockPrices.replace("GOOG", 2800.0, 2900.0);
+
+// Existence checks
+if (stockPrices.containsKey("GOOG")) {
+    System.out.println("Google price: " + stockPrices.get("GOOG"));
+}
 ```
 
 ### 3.2 Map Views and Factories
@@ -152,6 +164,9 @@ Maps provide collection views to allow iteration:
 1. **`keySet()`**: A `Set` of all unique keys.
 2. **`values()`**: A `Collection` of all values (may contain duplicates).
 3. **`entrySet()`**: A `Set` of `Map.Entry<K, V>` objects (the "tuples").
+
+> [!IMPORTANT]
+> **Iteration Constraint**: The `Map` interface does **not** implement `java.lang.Iterable`. You cannot use a Map directly in an enhanced for-loop. You must first obtain a "View" (like `entrySet()`) to iterate over the data.
 
 #### Unmodifiable Factories (Java 9+)
 - `Map.of(k1, v1, ...)`: Direct enumeration for up to 10 pairs.
