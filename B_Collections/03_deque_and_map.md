@@ -58,7 +58,6 @@ String nextMsg = messages.poll();
 > - **Cache Locality**: `ArrayDeque` uses a contiguous array, which is significantly more CPU-cache friendly.
 > - **Null Handling**: `ArrayDeque` **forbids null elements**, while `LinkedList` allows them.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -115,7 +114,6 @@ System.out.println(stack.pop());  // "Top Layer"
 - **Iteration**: `descendingIterator()` allows traversing the Deque from tail to head.
 - **Contract Note**: Unlike `List` or `Set`, `Queue` and `Deque` are **not** expected to provide meaningful `equals()` or `hashCode()` implementations.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -162,7 +160,6 @@ Maps provide collection views to allow iteration:
 > [!WARNING]
 > Maps created via `Map.of()` and `Map.copyOf()` are **strictly unmodifiable**. Attempting to `put` or `remove` will result in an `UnsupportedOperationException`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -220,4 +217,3 @@ Map<String, Integer> modifiableScores = new HashMap<>(Map.of("Bob", 20));
 modifiableScores.merge("Bob", 5, Integer::sum);
 ```
 
-[Back to Top](#table-of-contents)

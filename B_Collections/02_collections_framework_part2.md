@@ -44,7 +44,6 @@ Extending `Iterable`, the `Collection` interface adds fundamental management cap
 - **CRUD Operations**: Adds `add()`, `remove()`, and `clear()`.
 - **Querying**: Adds `contains()` and `containsAll()`.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -80,7 +79,6 @@ fruits.replaceAll(String::toUpperCase); // ["APPLE", "DRAGONFRUIT", ...]
 fruits.sort(Comparator.naturalOrder());
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -113,7 +111,6 @@ sb.append(" Modified"); // The hashcode changed!
 System.out.println(sbSet.contains(sb)); // Likely FALSE
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -138,7 +135,6 @@ long count = nums.parallelStream().filter(n -> n > 2).count();
 Integer[] array = nums.toArray(new Integer[0]);
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -163,7 +159,6 @@ List<String> fixed = List.of("A", "B", "C");
 - **Optimization**: If the passed collection is *already* unmodifiable, `copyOf` may return the same reference instead of creating a new object.
 - **Snapshot**: If the original is modifiable, it creates a disconnected snapshot of the current state.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -204,4 +199,3 @@ System.out.println(students.size()); // 2!
 // Without overrides, these are two distinct objects in memory.
 ```
 
-[Back to Top](#table-of-contents)

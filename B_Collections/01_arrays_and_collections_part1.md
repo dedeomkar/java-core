@@ -82,7 +82,6 @@ String[] roles = new String[]{"Admin", "User"};
 int[][] matrix = { {1, 2}, {3, 4} };
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -114,7 +113,6 @@ int[] target = new int[10];
 System.arraycopy(ia, 0, target, 2, 3); // target: {0, 0, 1, 2, 3, 0, ...}
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -151,7 +149,6 @@ List<String> listView = Arrays.asList(arr);
 - **deepEquals**: Recursively tests contained arrays (essential for multidimensional arrays).
 - **hashCode/deepHashCode**: Generates a hash code consistent with the equality logic.
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -182,7 +179,6 @@ int[] nums = {1, 2, 3, 4, 5};
 Arrays.parallelPrefix(nums, (a, b) -> a + b); // {1, 3, 6, 10, 15}
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -205,7 +201,6 @@ int index = Arrays.binarySearch(names, "Charlie");
 // Charlie should be at index 2. Result: -2 - 1 = -3
 ```
 
-[Back to Top](#table-of-contents)
 
 ---
 
@@ -230,4 +225,3 @@ int index = Arrays.binarySearch(names, "Charlie");
 var items = new int[]{1, 2, 3}; // Works
 ```
 
-[Back to Top](#table-of-contents)
