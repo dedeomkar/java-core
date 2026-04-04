@@ -138,8 +138,24 @@ Arrays.sort(names, String.CASE_INSENSITIVE_ORDER); // Contextual order
 There are three main ways to sort a `List`:
 
 1.  `list.sort(comparator)`: Default method in the `List` interface.
-2.  `Collections.sort(list)`: Legacy method (requires elements to be `Comparable`).
+2.  `Collections.sort(list)`: Legacy method (requires elements to be `Comparable`). That is compareTo() method must be implemented in elements. 
 3.  `Collections.sort(list, comparator)`: Legacy method with explicit order.
+
+```java
+List<String> items = new ArrayList<>(List.of("C", "a", "B"));
+
+// 1. Natural Order (Unicode): "B", "C", "a"
+// Requires elements to implement Comparable (compareTo)
+Collections.sort(items); 
+
+// 2. Custom Order (Case-Insensitive): "a", "B", "C"
+items.sort(String.CASE_INSENSITIVE_ORDER);
+
+// 3. Custom Order (Reverse Natural): "a", "C", "B"
+// Using a explicit Comparator
+items.sort(Comparator.reverseOrder());
+```
+
 
 > [!TIP]
 > Prefer `list.sort(comparator)` in modern (Java 8+) codebases. Pass `null` if you want to use the natural order of elements.
@@ -153,9 +169,19 @@ There are three main ways to sort a `List`:
 The `Comparator` interface provides static factories to build comparators using **Method References** or **Lambdas**.
 
 - **`Comparator.comparing(extractor)`**: 
-  - **Parameter**: A `Function` (Key Extractor) that takes an object and returns a `Comparable` key.
+  - **Parameter**: `Function<T, U>` (Key Extractor).
+    - **T**: The type of objects being compared (e.g., `Student`).
+    - **U**: The type of the sort key being extracted (e.g., `String`).
+  - **Type Constraint**: The extracted key (`U`) must implement `Comparable` (Natural Order).
   - **Logic**: It extracts the key and compares items based on that key's natural order.
-- **`Comparator.comparingInt(extractor)`**: Optimized for primitives to avoid auto-boxing.
+  ```java
+  // T is Student, U is String (getName returns String)
+  Comparator<Student> byName = Comparator.comparing(Student::getName);
+  ```
+- **`Comparator.comparing(extractor, comparator)`**:
+  - **Parameters**: `Function<T, U>` (Extractor) and `Comparator<U>` (Key Comparator). Both are **mandatory**.
+  - **Logic**: Extracts a key and uses the provided `Comparator` to order those keys.
+- **`Comparator.comparingInt(extractor)`**: Optimized for primitives to avoid auto-boxing. **Mandatory** `ToIntFunction<T>`.
 
 #### Deep Dive: The Method Reference (`::`)
 The `::` operator is a shorthand syntax for a lambda expression that simply calls a method.
