@@ -35,6 +35,9 @@ Arrays.sort(numbers); // {7, 12, 45, 89}
 // Sorting objects with a Comparator
 String[] names = {"Zane", "Alice", "Bob"};
 Arrays.sort(names, String.CASE_INSENSITIVE_ORDER);
+
+// Using a Lambda for custom logic (e.g., sorting by string length)
+Arrays.sort(names, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
 ```
 
 ### 1.2 Sub-range Sorting
@@ -61,6 +64,9 @@ In modern Java (Java 8+), the `List` interface provides a default method `sort(C
 ```java
 List<String> list = new ArrayList<>(List.of("Sheila", "Alice", "Bob"));
 list.sort(String.CASE_INSENSITIVE_ORDER);
+
+// Using a Lambda for custom logic (e.g., sorting by string length)
+list.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
 ```
 
 ### 2.2 The `Collections` Utility
@@ -70,7 +76,7 @@ The legacy `java.util.Collections` class provides two `sort()` overloads:
 - `sort(List<T> list, Comparator<? super T> c)`: Sorts using the provided strategy.
 
 > [!IMPORTANT]
-> If you use the single-argument `Collections.sort()` on a list whose elements do **not** implement `Comparable`, the code will result in a **Compilation Error**.
+> The single-argument `Collections.sort()` expects list elements to implement the `Comparable` interface. Attempting to use it on non-comparable types will result in a **Compilation Error** due to a violation of generic type bounds.
 
 ---
 
