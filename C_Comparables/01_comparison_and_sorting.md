@@ -1,165 +1,204 @@
-# Java Comparison and Sorting
+# Comparison Methods and Interfaces
 
 ## Table of Contents
-- [1. Fundamental Comparison Interfaces](#1-fundamental-comparison-interfaces)
-  - [1.1 Comparable: The Natural Order](#11-comparable-the-natural-order)
-  - [1.2 Comparator: External Ordering](#12-comparator-external-ordering)
-- [2. Implementation Mechanics and Pitfalls](#2-implementation-mechanics-and-pitfalls)
-  - [2.1 The Subtraction Analogy](#21-the-subtraction-analogy)
-  - [2.2 Numeric Overflows and Underflows](#22-numeric-overflows-and-underflows)
-- [3. Sorting APIs](#3-sorting-apis)
-  - [3.1 Arrays.sort()](#31-arrayssort)
-  - [3.2 List.sort() and Collections.sort()](#32-listsort-and-collectionssort)
-  - [3.3 Mutating Collections](#33-mutating-collections)
-- [4. Comparator Factories and Composition](#4-comparator-factories-and-composition)
-  - [4.1 Comparison Chain Pattern](#41-comparison-chain-pattern)
-  - [4.2 Handling Null Values](#42-handling-null-values)
-  - [4.3 Higher-Order Decorators](#43-higher-order-decorators)
+- [1. Comparison Logic and Conventions](#1-comparison-logic-and-conventions)
+  - [1.1 The Subtraction Analogy](#11-the-subtraction-analogy)
+  - [1.2 Natural Order vs. Contextual Order](#12-natural-order-vs-contextual-order)
+- [2. Primary Comparison Interfaces](#2-primary-comparison-interfaces)
+  - [2.1 Comparable Interface](#21-comparable-interface)
+  - [2.2 Comparator Interface](#22-comparator-interface)
+- [3. Comparing Primitives and Strings](#3-comparing-primitives-and-strings)
+  - [3.1 Primitive Wrap and Underflow Safety](#31-primitive-wrap-and-underflow-safety)
+  - [3.2 String and Locale-Agnostic Comparison](#32-string-and-locale-agnostic-comparison)
+- [4. Sorting Arrays and Collections](#4-sorting-arrays-and-collections)
+  - [4.1 Arrays.sort Utility](#41-arrayssort-utility)
+  - [4.2 Sorting Lists and Collections](#42-sorting-lists-and-collections)
+- [5. Advanced Comparator Factories and Chaining](#5-advanced-comparator-factories-and-chaining)
+  - [5.1 Comparator Factories](#51-comparator-factories)
+  - [5.2 Chaining and Decorators](#52-chaining-and-decorators)
+  - [5.3 Null Handling](#53-null-handling)
 
 ---
 
-## 1. Fundamental Comparison Interfaces
+## 1. Comparison Logic and Conventions
 
-In Java, ordering is determined by two primary interfaces. Understanding when to use each is critical for clean architecture.
+### 1.1 The Subtraction Analogy
 
-### 1.1 Comparable: The Natural Order
+Comparison in Java follows a mathematical sign convention. The result is always an `int` that indicates the relative position of two elements.
 
-- **Definition**: Implemented by the class itself to define its "default" or "natural" ordering.
-- **Method**: `int compareTo(T o)`
-- **Scope**: Best suited for mathematical or chronological concepts (e.g., `Integer`, `String`, `LocalDate`).
+- **Formula**: `A - B`
+- **Negative result (< 0)**: `A` comes BEFORE `B`.
+- **Positive result (> 0)**: `A` comes AFTER `B`.
+- **Zero (0)**: `A` and `B` are in the SAME position (effectively equal for sorting purposes).
 
 > [!NOTE]
-> Think of `Comparable` like a person's height. It is an intrinsic property of the person that they can report themselves.
+> Think of it like a tape measure. If you subtract the position of point B from point A (A - B), a negative number means A is "behind" B (smaller index/value), while a positive number means it's "ahead" (larger index/value).
+
+### 1.2 Natural Order vs. Contextual Order
+
+- **Natural Order**: The "obvious" way to sort something (e.g., 1, 2, 3... or A, B, C...).
+- **Contextual Order**: A specific way to sort based on the situation (e.g., sort employees by salary, then by hire date).
+
+---
+
+## 2. Primary Comparison Interfaces
+
+### 2.1 Comparable Interface
+
+The `Comparable` interface is implemented by a class to give it a **natural order**.
+
+- **Method**: `int compareTo(T other)`
+- **Constraint**: Only one natural order per class.
+- **Suitability**: Best for math-like concepts (Integers, Dates, Strings).
 
 ```java
-public class FinancialInstrument implements Comparable<FinancialInstrument> {
-    private String ticker;
+// Implementing Comparable for a custom Price class
+public class Price implements Comparable<Price> {
+    private final double value;
     
+    public Price(double value) { this.value = value; }
+
     @Override
-    public int compareTo(FinancialInstrument other) {
-        return this.ticker.compareTo(other.ticker);
+    public int compareTo(Price other) {
+        // Natural order: cheapest to most expensive
+        return Double.compare(this.value, other.value);
     }
 }
 ```
 
-### 1.2 Comparator: External Ordering
+### 2.2 Comparator Interface
 
-- **Definition**: Implemented by a separate class or lambda to provide an "ad-hoc" or specific ordering logic.
+The `Comparator` interface is implemented by an independent class or lambda to provide **flexible/contextual order**.
+
 - **Method**: `int compare(T o1, T o2)`
-- **Scope**: Ideal for business domain objects where multiple ordering strategies are required (e.g., by Price, by Volatility, by Expiry).
+- **Flexibility**: Can have multiple comparators for the same class.
+- **Suitability**: Best for business domain objects (e.g., ordering items by weight, price, or distance).
 
-> [!NOTE]
-> Think of `Comparator` like a tailor measuring people. The tailor is external to the person and can decide to sort them by arm length, waist size, or shoulder width depending on the task.
+> [!TIP]
+> Think of `Comparable` as an object's internal compass—it always knows its own "North." Think of `Comparator` as a GPS or a Map—you can change the "destination" or rules of the journey whenever you want without changing the object itself.
 
 ```java
-// Comparator defined as a separate strategy
-Comparator<Order> priceComparator = (o1, o2) -> 
-    Double.compare(o1.getPrice(), o2.getPrice());
+// Comparator as a standalone strategy
+Comparator<Product> heavyFirst = (p1, p2) -> Double.compare(p2.getWeight(), p1.getWeight());
 ```
-
-[Back to Top](#java-comparison-and-sorting)
 
 ---
 
-## 2. Implementation Mechanics and Pitfalls
+## 3. Comparing Primitives and Strings
 
-### 2.1 The Subtraction Analogy
+### 3.1 Primitive Wrap and Underflow Safety
 
-The result of a comparison is effectively a subtraction: `A - B`.
-- **Negative result**: `A` comes before `B` (A is smaller).
-- **Zero**: `A` and `B` are equivalent in order.
-- **Positive result**: `A` comes after `B` (A is larger).
+Performing direct subtraction (e.g., `o1.id - o2.id`) is dangerous due to **integer underflow/overflow**.
 
-### 2.2 Numeric Overflows and Underflows
-
-It is tempting to implement `compare` using direct subtraction: `(o1, o2) -> o1.val - o2.val`. **Never do this in production.**
-
-> [!WARNING]
-> Integer subtraction can overflow or underflow. For instance, `Integer.MIN_VALUE - 1` results in `Integer.MAX_VALUE`, flipping the comparison logic entirely. Similarly, floating-point subtraction can lose precision or return non-zero fractions that get truncated to zero when cast to `int`.
-
-**The Right Way**: Use the static helper methods in primitive wrapper classes.
+- **The Danger**: If `o1.id` is a large positive number and `o2.id` is a large negative number, `o1 - o2` can wrap around and produce a negative result, even though `o1 > o2`.
+- **The Solution**: Use static `compare` methods in primitive wrapper classes.
 
 ```java
-public int compare(Trade t1, Trade t2) {
-    // AVOID: return (int)(t1.getQuantity() - t2.getQuantity());
+public int compare(Item a, Item b) {
+    // WRONG: return a.id - b.id; // Potential underflow
     
-    // PREFER: Accurate and safe
-    return Long.compare(t1.getQuantity(), t2.getQuantity());
+    // CORRECT:
+    return Integer.compare(a.id(), b.id());
 }
 ```
 
-[Back to Top](#java-comparison-and-sorting)
+> [!WARNING]
+> Subtraction with `long`, `float`, or `double` followed by casting to `int` is even more prone to failure due to loss of precision and overflow. Always use `Double.compare()` or `Long.compare()`.
 
----
+### 3.2 String and Locale-Agnostic Comparison
 
-## 3. Sorting APIs
+String comparisons in Java are **case-sensitive** and **locale-blind** by default.
 
-Java provides robust utilities for sorting arrays and collections, leveraging the interfaces discussed above.
-
-### 3.1 Arrays.sort()
-
-Found in `java.util.Arrays`, this utility provides overloads for:
-- All primitive types (uses Dual-Pivot Quicksort).
-- Object arrays (uses Timsort) using natural order.
-- Object arrays using a custom `Comparator`.
-- Sub-ranges (start to end index).
-
-### 3.2 List.sort() and Collections.sort()
-
-- **`list.sort(Comparator c)`**: The modern (Java 8+) default method on the `List` interface.
-- **`Collections.sort(List l)`**: Traditional method for natural ordering.
-- **`Collections.sort(List l, Comparator c)`**: Traditional method delegating to `list.sort()`.
+- `s1.compareTo(s2)`: Natural (Unicode) order.
+- `s1.compareToIgnoreCase(s2)`: Case-insensitive order.
+- `String.CASE_INSENSITIVE_ORDER`: A reusable static `Comparator` instance.
 
 > [!IMPORTANT]
-> `Collections.sort(list)` will throw a `ClassCastException` at runtime if the elements in the list do not implement `Comparable`.
-
-### 3.3 Mutating Collections
-
-Beyond sorting, the `Collections` utility provides several low-latency friendly mutations:
-- **`reverse(List<?> list)`**: Reverses the order of elements.
-- **`rotate(List<?> list, int distance)`**: Shifts elements by a distance, with wrap-around.
-- **`shuffle(List<?> list)`**: Randomizes order (useful for Monte Carlo simulations).
-- **`swap(List<?> list, int i, int j)`**: Exchanges elements at specific indices.
-
-[Back to Top](#java-comparison-and-sorting)
+> Standard String comparisons do not handle accented characters correctly for all languages. If internationalization (i18n) is required, use `java.text.Collator`.
 
 ---
 
-## 4. Comparator Factories and Composition
+## 4. Sorting Arrays and Collections
 
-Modern Java allows for declarative comparator building using static factory methods.
+### 4.1 Arrays.sort Utility
 
-### 4.1 Comparison Chain Pattern
+The `Arrays` utility class provides overloaded `sort()` methods for all primitives and object types.
 
-Instead of nested `if-else` blocks, use `comparing()` and `thenComparing()`.
+- **Object sorting**: Requires `Comparable` implementation or an explicit `Comparator`.
+- **Sub-ranges**: Supports sorting only a subset of an array (e.g., `Arrays.sort(arr, 1, 5)`).
 
 ```java
-Comparator<Student> multiSort = Comparator
-    .comparing(Student::getName) // Primary sort
-    .thenComparing(Student::getGrade, Comparator.reverseOrder()); // Secondary sort (descending)
+String[] names = {"Zoe", "Alice", "Bob"};
+Arrays.sort(names); // Natural order
+Arrays.sort(names, String.CASE_INSENSITIVE_ORDER); // Contextual order
 ```
 
-### 4.2 Handling Null Values
+### 4.2 Sorting Lists and Collections
 
-Passing a `null` to a standard comparator usually triggers a `NullPointerException`. Java provides "Null-safe" decorators.
+There are three main ways to sort a `List`:
+
+1.  `list.sort(comparator)`: Default method in the `List` interface.
+2.  `Collections.sort(list)`: Legacy method (requires elements to be `Comparable`).
+3.  `Collections.sort(list, comparator)`: Legacy method with explicit order.
 
 > [!TIP]
-> Use `nullsFirst` or `nullsLast` to explicitly define how `null` values should be positioned in the sorted list.
+> Prefer `list.sort(comparator)` in modern (Java 8+) codebases. Pass `null` if you want to use the natural order of elements.
+
+---
+
+## 5. Advanced Comparator Factories and Chaining
+
+### 5.1 Comparator Factories
+
+The `Comparator` interface provides static factories to build comparators using **Method References** or **Lambdas**.
+
+- **`Comparator.comparing(extractor)`**: 
+  - **Parameter**: A `Function` (Key Extractor) that takes an object and returns a `Comparable` key.
+  - **Logic**: It extracts the key and compares items based on that key's natural order.
+- **`Comparator.comparingInt(extractor)`**: Optimized for primitives to avoid auto-boxing.
+
+#### Deep Dive: The Method Reference (`::`)
+The `::` operator is a shorthand syntax for a lambda expression that simply calls a method.
+
+- **Syntax**: `ClassName::methodName`
+- **Equivalent Lambda**: `Student::getPercentGrade` ↔ `(Student s) -> s.getPercentGrade()`
+
+> [!TIP]
+> Use Method References whenever your lambda is just a "pass-through" to a specific method. It makes the code cleaner and more declarative.
 
 ```java
-Comparator<String> safeComparator = Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER);
+// Sort students by their percentage grade (ascending)
+// 'Student::getPercentGrade' is the key extractor
+Comparator<Student> byGrade = Comparator.comparingInt(Student::getPercentGrade);
 ```
 
-### 4.3 Higher-Order Decorators
+### 5.2 Chaining and Decorators
 
-Comparators can be transformed using higher-order functions:
-- **`reversed()`**: Flips the current comparator's logic.
-- **`comparingInt()` / `comparingDouble()`**: Specialized factories that avoid boxing/unboxing overhead.
+Comparators can be chained to handle "tie-breaker" scenarios using `thenComparing`.
+
+- **`thenComparing(extractor)`**: Takes another key extractor to use if the previous comparator returns 0 (a tie).
+- **`thenComparing(comparator)`**: Takes a full `Comparator` object for secondary sorting.
 
 ```java
-// Efficient sorting for low-latency systems
-List<MarketUpdate> updates = ...;
-updates.sort(Comparator.comparingLong(MarketUpdate::getTimestamp));
+// 1. Primary Sort: By Name (Natural)
+// 2. Secondary Sort: By Grade (Descending)
+Comparator<Student> complexOrder = Comparator.comparing(Student::getName)
+    .thenComparing(
+        Comparator.comparingInt(Student::getPercentGrade).reversed() 
+    );
 ```
 
-[Back to Top](#java-comparison-and-sorting)
+### 5.3 Null Handling
+
+To prevent `NullPointerException` during sorting, use `nullsFirst` or `nullsLast` decorators.
+
+```java
+// Puts objects with null names at the very beginning of the list
+Comparator<Student> safeOrder = Comparator.comparing(
+    Student::getName, 
+    Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER)
+);
+```
+
+> [!NOTE]
+> Functional delegation allows us to create complex "wrappers" (like `reversed()` or `nullsFirst()`) that transform the behavior of an existing comparator without modifying its internal logic.
