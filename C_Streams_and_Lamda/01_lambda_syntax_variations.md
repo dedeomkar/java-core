@@ -10,13 +10,10 @@
 - [3. Method Body Variations](#3-method-body-variations)
   - [3.1 Block vs. Expression Lambdas](#31-block-vs-expression-lambdas)
   - [3.2 Void Compatibility](#32-void-compatibility)
+  - [3.3 Side Effects and Void Returns](#33-side-effects-and-void-returns)
 - [4. Type Consistency and Constraints](#4-type-consistency-and-constraints)
   - [4.1 The "All or Nothing" Rule](#41-the-all-or-nothing-rule)
   - [4.2 Annotations on Parameters](#42-annotations-on-parameters)
-- [5. Expression Statements](#5-expression-statements)
-  - [5.1 Definition and Categories](#51-definition-and-categories)
-  - [5.2 Side Effects and Void Returns](#52-side-effects-and-void-returns)
-
 ---
 
 ## 1. Core Syntax and Functional Interfaces
@@ -100,9 +97,55 @@ Function<Integer, Integer> squareBlock = (i) -> {
 Function<Integer, Integer> squareExpr = (i) -> i * i;
 ```
 
+> [!TIP]
+> **Understanding Type Mapping**: In `Function<Integer, Integer>`, the first type is the **Input** and the second is the **Return**. Even though there are two types listed, the lambda only shows one parameter because it's a single input-output machine.
+
+
 ### 3.2 Void Compatibility
 
 - Expression lambdas can be used for `void` return types if the expression is an **expression statement**.
+
+```java
+List<String> registry = new ArrayList<>();
+
+// Valid: Consumer<String> expects void return
+// registry.add() returns boolean, but it is an expression statement.
+Consumer<String> register = (s) -> registry.add(s);
+
+// Valid: println() returns void
+Consumer<String> printer = (s) -> System.out.println(s);
+
+// INVALID: s.length() > 0 is a boolean expression, NOT a statement.
+// Even though it's a single expression, it can't be used as a Consumer.
+// Consumer<String> err = (s) -> s.length() > 0; 
+```
+
+> [!IMPORTANT]
+> **Action vs. Value**: To be "Void Compatible," the expression must be an **action** (an expression statement). You can't just provide a **value** (like a comparison or a variable) if the interface expects `void`.
+
+
+Not all expressions are "expression statements". Only the following are valid when a `void` result is expected:
+1. **Assignment** (e.g., `x = 10`)
+2. **Increment/Decrement** (e.g., `i++`, `--j`)
+3. **Method Invocation** (e.g., `list.add("item")`)
+4. **Object Instantiation** (e.g., `new String()`)
+
+### 3.3 Side Effects and Void Returns
+
+A method that returns a value (like `Set.add()` which returns `boolean`) can be used as a `Consumer` (void return) because it is a method invocation.
+
+> [!NOTE]
+> This is a "**fire-and-forget**" mechanism. You trigger the action (the side effect) and ignore whatever receipt (return value) the system tries to give you.
+
+```java
+Set<String> names = new HashSet<>();
+
+// Valid: names.add returns boolean, but Consumer ignores it
+Consumer<String> addName = s -> names.add(s);
+
+// Valid: instantiation is an expression statement
+Consumer<String> dummy = s -> new String(s);
+```
 
 ---
 
@@ -145,30 +188,3 @@ Annotations can only be applied to a parameter if a type designator (`var` or ex
 ```
 
 ---
-
-## 5. Expression Statements
-
-### 5.1 Definition and Categories
-
-Not all expressions are "expression statements". Only the following are valid when a `void` result is expected:
-1. **Assignment** (e.g., `x = 10`)
-2. **Increment/Decrement** (e.g., `i++`, `--j`)
-3. **Method Invocation** (e.g., `list.add("item")`)
-4. **Object Instantiation** (e.g., `new String()`)
-
-### 5.2 Side Effects and Void Returns
-
-A method that returns a value (like `Set.add()` which returns `boolean`) can be used as a `Consumer` (void return) because it is a method invocation.
-
-> [!NOTE]
-> This is a "**fire-and-forget**" mechanism. You trigger the action (the side effect) and ignore whatever receipt (return value) the system tries to give you.
-
-```java
-Set<String> names = new HashSet<>();
-
-// Valid: names.add returns boolean, but Consumer ignores it
-Consumer<String> addName = s -> names.add(s);
-
-// Valid: instantiation is an expression statement
-Consumer<String> dummy = s -> new String(s);
-```
