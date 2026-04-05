@@ -68,6 +68,11 @@ import java.util.List;
 public class ConsumerExample {
     public static void main(String[] args) {
         Consumer<String> logger = msg -> System.out.println("LOG: " + msg);
+        
+        // Explicitly calling accept
+        logger.accept("Initialization complete");
+        
+        // Or using it where a Consumer is expected (forEach internally calls accept)
         List.of("Order 1", "Order 2").forEach(logger);
     }
 }
